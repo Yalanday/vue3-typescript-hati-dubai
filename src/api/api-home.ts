@@ -1,0 +1,31 @@
+import axios from "axios";
+import {FetchDataSlidesArgs, FetchDataArgs} from "@/types/api-types";
+
+async function fetchData({url,loading, data, error}: FetchDataArgs): Promise<void> {
+    try {
+        loading.value = true;
+        const response = await axios.get(url);
+        data.value = response.data;
+    } catch (err: any) {
+        error.value = err.message;
+    } finally {
+        loading.value = false;
+    }
+}
+
+async function fetchDataItemsSlide({loading, itemSlides, error, curCity}: FetchDataSlidesArgs): Promise<void> {
+    try {
+        loading.value = true;
+        const response = await axios.get('https://dbd0282f034a13d8.mokky.dev/promo-items/?city=' + curCity.value);
+        itemSlides.value = response.data;
+    } catch (err: any) {
+        error.value = err.message;
+    } finally {
+        loading.value = false;
+    }
+    // console.log(itemSlides.value)
+}
+
+
+
+export {fetchData, fetchDataItemsSlide };

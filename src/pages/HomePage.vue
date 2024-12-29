@@ -1,9 +1,10 @@
 <script setup>
 
+import HomePromo from "@/components/HomePromo.vue";
 </script>
 
 <template>
-  HOME
+  <home-promo/>
 </template>
 
 <style scoped>

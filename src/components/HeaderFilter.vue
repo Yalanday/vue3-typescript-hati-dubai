@@ -1,17 +1,13 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import type {SelectProps} from 'ant-design-vue';
+import {useCurCityStore} from "@/store/cur-city";
 
-type optionsType = {
-  value: string,
-  label: string,
-}
+const store = useCurCityStore();
 
 const value1 = ref('Дубай');
 const value2 = ref('₽');
 const value3 = ref('$');
-
-
 
 const options1 = ref<SelectProps['options']>([
   {
@@ -33,24 +29,20 @@ const options2 = ref<SelectProps['options']>([
     label: '$',
   },
 ]);
-const options3 = ref<SelectProps['options']>([
-  {
-    value: 'dollar',
-    label: '$',
-  },
-  {
-    value: 'rubl',
-    label: '₽',
-  },
-]);
 
 const focus = () => {
   console.log('focus');
 };
 
+const handleChangeCyty = (value: string) => {
+  store.setCurCity(value);
+};
+
+
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
 };
+
 </script>
 
 <template>
@@ -62,7 +54,7 @@ const handleChange = (value: string) => {
           style="width: 85px"
           :options="options1"
           @focus="focus"
-          @change="handleChange"
+          @change="handleChangeCyty"
           :bordered="false"
       ></a-select>
 
@@ -77,16 +69,6 @@ const handleChange = (value: string) => {
       >
       </a-select>
 
-      <a-select
-          ref="select"
-          v-model:value="value3"
-          style="width: 50px"
-          :options="options3"
-          @focus="focus"
-          @change="handleChange"
-          :bordered="false"
-      >
-      </a-select>
     </a-space>
   </div>
 </template>
