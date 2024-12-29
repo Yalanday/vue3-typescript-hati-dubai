@@ -1,12 +1,9 @@
 <script setup lang="ts">
+//components
 import RoundElement from "@/components/RoundElement.vue";
+//types
+import type {ConnectionType} from "@/types/types";
 
-type ConnectionType = {
-  id: number,
-  img: string,
-  link: string,
-  label: string
-}
 
 const connectionItems :ConnectionType[] = [
   {
@@ -33,7 +30,7 @@ const connectionItems :ConnectionType[] = [
 
 <template>
   <div class="header-connection">
-    <RoundElement v-for="item in connectionItems" :key="item.id" :img="item.img" :link="item.link" :label="item.label"/>
+    <round-element v-for="item in connectionItems" :key="item.id" :img="item.img" :link="item.link" :label="item.label"/>
   </div>
 </template>
 

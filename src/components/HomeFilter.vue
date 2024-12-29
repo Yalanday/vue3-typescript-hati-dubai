@@ -1,0 +1,127 @@
+<script setup lang="ts">
+import {computed, ref, Ref, watch} from "vue";
+// store
+import {useCurCityStore} from "@/store/cur-city";
+// types
+import type {FilterItemType} from "@/types/types";
+
+const curCityStore = useCurCityStore();
+const curCity = computed(() => curCityStore.curCity);
+const curValue = computed(() => {
+  if (curCity.value === 'dubai') {
+    return 'Дубае';
+  } else {
+    return 'Абу-Даби'
+  }
+});
+
+
+const filters: Ref<FilterItemType[]> = ref([
+  {
+    id: 1,
+    name: 'Виллы',
+    value: 'villages',
+    active: true,
+  },
+  {
+    id: 2,
+    name: 'Таунхаусы',
+    value: 'townhouses',
+    active: false,
+  },
+  {
+    id: 3,
+    name: 'Аппартаменты',
+    value: 'apartments',
+    active: false,
+  },
+  {
+    id: 4,
+    name: 'Жилые компмлексы',
+    value: 'complex',
+    active: false,
+  },
+  {
+    id: 5,
+    name: 'Все объекты в Дубае',
+    value: 'all_objects',
+    active: false,
+  }
+]);
+
+watch(
+    curCity,
+    () => {
+      filters.value = filters.value.map(filter => {
+        if (filter.value === 'all_objects') {
+          return {
+            ...filter,
+            name: `Все объекты в ${curValue.value}`, // Были пропущены обратные кавычки для строки шаблона
+          };
+        } else {
+          return filter;
+        }
+      }); // исправлено
+    }
+)
+
+
+</script>
+
+<template>
+  <div class="main__home-filter home-filter">
+    <div class="home-filter__container container">
+      <ul class="home-filter__list">
+        <li v-for="item in filters" :key="item.id"
+            class="home-filter__item"
+            :class="{ active: item.active  }"
+            v-html="item.name">
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.home-filter__container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.home-filter__list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-filter__item {
+  font-size: 1.6rem;
+  line-height: 25px;
+  font-weight: 400;
+  color: #000000;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.home-filter__item:hover {
+  color: #208B95;
+}
+
+
+.home-filter__item.active {
+  color: #208B95;
+  pointer-events: none;
+}
+
+@media (max-width: 1280px) {
+  .home-filter__list {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .home-filter__item {
+    font-size: 1.4rem;
+  }
+  
+}
+
+</style>
