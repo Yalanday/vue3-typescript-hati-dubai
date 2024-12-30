@@ -7,7 +7,7 @@ type HeaderNavItem = {
 }
 
 const navItems: HeaderNavItem[] = [
-  {label: 'Продажа', link: '/', active: true},
+  {label: 'Продажа', link: '/sale', active: true},
   {label: 'Аренда', link: '/blog', active: false},
   {label: 'Новостройки', link: '/contact', active: false},
   {label: 'Виллы', link: '/contact', active: false},

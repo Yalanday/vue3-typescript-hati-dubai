@@ -1,6 +1,6 @@
 <script setup>
 //components
-import HomeFilter from "@/components/HomeFilter.vue";
+import SaleFilter from "@/components/SaleFilter.vue";
 import PromoTheBeast from "@/components/PromoTheBeast.vue";
 import PromoLinks from "@/components/PromoLinks.vue";
 </script>
@@ -8,7 +8,7 @@ import PromoLinks from "@/components/PromoLinks.vue";
 <template>
   <promo-links />
   <PromoTheBeast/>
-  <home-filter/>
+  <sale-filter/>
 </template>
 <style scoped>
 

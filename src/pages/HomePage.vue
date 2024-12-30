@@ -1,12 +1,9 @@
-<script setup>
-
-import HomePromo from "@/components/HomePromo.vue";
-import TypeSliders from "@/components/TypeSliders.vue";
+<script setup lang="ts">
+import HomeHero from "@/components/HomeHero.vue";
 </script>
 
 <template>
-  <home-promo/>
-  <type-sliders/>
+<home-hero/>
 </template>
 
 <style scoped>

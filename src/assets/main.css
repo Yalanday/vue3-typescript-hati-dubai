@@ -65,7 +65,9 @@ body ul {
 .PromoSwiper .swiper-button-prev,
 .PromoSwiper .swiper-button-next,
 .TypeSwiper .swiper-button-prev,
-.TypeSwiper .swiper-button-next {
+.TypeSwiper .swiper-button-next,
+.TextSwiper .swiper-button-prev,
+.TextSwiper .swiper-button-next{
     display: none;
 }
 
@@ -78,16 +80,31 @@ body ul {
 }
 
 .PromoSwiper .swiper-pagination-bullet,
-.TypeSwiper .swiper-pagination-bullet {
+.TypeSwiper .swiper-pagination-bullet,
+.TextSwiper .swiper-pagination-bullet{
     background-color: #ffffff;
     width: 50px;
     height: 3px;
     border-radius: 0;
 }
 
+.TextSwiper .swiper-pagination{
+    text-align: left;
+}
+
+.TextSwiper .swiper-pagination-bullet{
+    background-color: #595959;
+    text-align: left;
+    width: 30px;
+}
+
 .PromoSwiper .swiper-pagination-bullet-active,
-.TypeSwiper .swiper-pagination-bullet-active {
+.TypeSwiper .swiper-pagination-bullet-active{
     width: 100px;
+}
+
+.TextSwiper .swiper-pagination-bullet-active{
+    width: 60px;
 }
 
 .fixed-select .ant-select-arrow {
@@ -97,3 +114,6 @@ body ul {
 .TypeSwiper .swiper-pagination {
     z-index: 1000;
 }
+
+
+

@@ -15,3 +15,19 @@ export const propsGreenStyle: PropsStyle = {
     hoverBackgroundColor: '#208B95',
     hoverTextColor: '#ffffff',
 }
+
+export const propsGreenStyleReverse: PropsStyle = {
+    borderColor: '#208B95',
+    textColor: '#ffffff',
+    backgroundColor: '#208B95',
+    hoverBackgroundColor: '#000000',
+    hoverTextColor: '#ffffff',
+}
+
+export const propsFilterStyle: PropsStyle = {
+    borderColor: '#208B95',
+    textColor: '#000000',
+    backgroundColor: '#ffffff',
+    hoverBackgroundColor: '#ffffff',
+    hoverTextColor: '#ffffff',
+}
