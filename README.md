@@ -18,7 +18,7 @@ npm install
 ```
 
 ### Compile and Hot-Reload for Development
-
+тз
 ```sh
 npm run dev
 ```

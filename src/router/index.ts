@@ -1,8 +1,9 @@
 import {createWebHistory, createRouter} from 'vue-router';
 import {RouteRecordRaw} from "vue-router";
 import NotFound from "@/pages/NotFound.vue";
-import HomePage from '@/pages/HomePage.vue';
+import SalePage from '@/pages/SalePage.vue';
 import CompanyPage from "@/pages/CompanyPage.vue";
+import HomePage from "@/pages/HomePage.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -10,8 +11,16 @@ const routes: Array<RouteRecordRaw> = [
         component: NotFound
     },
     {
-        path: '/',
+        path: "/",
         component: HomePage
+    },
+    {
+        path: '/sale',
+        component: SalePage
+    },
+    {
+        path: '/sale',
+        component: SalePage
     },
     {
         path: '/company',
