@@ -7,7 +7,7 @@ import HeaderConnection from "@/components/HeaderConnection.vue";
 </script>
 
 <template>
-  <header class="header">
+  <header id="header" class="header">
     <div class="header__container container">
       <div class="header__logo">
         <Logo/>

@@ -48,8 +48,8 @@ onMounted(async () => {
 }
 
 .promo-links__container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .promo-links__list {
@@ -66,7 +66,7 @@ onMounted(async () => {
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 15px 21px;
+  padding: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 25px;
   background-color: #ffffff;
@@ -80,7 +80,7 @@ onMounted(async () => {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
 
   .promo-links__container {
     padding-top: 1.2rem;

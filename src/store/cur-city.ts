@@ -10,8 +10,6 @@ export const useCurCityStore = defineStore('curCity', {
     actions: {
         setCurCity(city: string) {
             this._curCity = city
-            console.log('sdsf   '+this._curCity)
-
         }
     }
 })

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {computed, ref, Ref, watch} from "vue";
+import {computed, onMounted, ref, Ref, watch} from "vue";
 // store
 import {useCurCityStore} from "@/store/cur-city";
+import {useCurTypeStore} from "@/store/cur-type-home";
 // types
 import type {FilterItemType} from "@/types/types";
 
@@ -15,30 +16,31 @@ const curValue = computed(() => {
   }
 });
 
+const curTypeStore = useCurTypeStore();
 
 const filters: Ref<FilterItemType[]> = ref([
   {
     id: 1,
     name: 'Виллы',
-    value: 'villages',
+    value: 'villa',
     active: true,
   },
   {
     id: 2,
     name: 'Таунхаусы',
-    value: 'townhouses',
+    value: 'town',
     active: false,
   },
   {
     id: 3,
     name: 'Аппартаменты',
-    value: 'apartments',
+    value: 'app',
     active: false,
   },
   {
     id: 4,
     name: 'Жилые компмлексы',
-    value: 'complex',
+    value: 'live',
     active: false,
   },
   {
@@ -49,6 +51,14 @@ const filters: Ref<FilterItemType[]> = ref([
   }
 ]);
 
+const setFilterValue = (value: string, item: FilterItemType) => {
+  filters.value.forEach(filter => {
+    filter.active = false
+  });
+  item.active = true;
+  curTypeStore.setType(value)
+}
+
 watch(
     curCity,
     () => {
@@ -56,15 +66,14 @@ watch(
         if (filter.value === 'all_objects') {
           return {
             ...filter,
-            name: `Все объекты в ${curValue.value}`, // Были пропущены обратные кавычки для строки шаблона
+            name: `Все объекты в ${curValue.value}`,
           };
         } else {
           return filter;
         }
-      }); // исправлено
+      });
     }
 )
-
 
 </script>
 
@@ -75,7 +84,8 @@ watch(
         <li v-for="item in filters" :key="item.id"
             class="home-filter__item"
             :class="{ active: item.active  }"
-            v-html="item.name">
+            v-html="item.name"
+            @click="setFilterValue(item.value, item)">
         </li>
       </ul>
     </div>
@@ -112,7 +122,7 @@ watch(
   pointer-events: none;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
   .home-filter__list {
     flex-wrap: wrap;
     row-gap: 10px;
@@ -121,7 +131,7 @@ watch(
   .home-filter__item {
     font-size: 1.4rem;
   }
-  
+
 }
 
 </style>

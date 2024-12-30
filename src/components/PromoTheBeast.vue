@@ -6,6 +6,7 @@ import PromoSlider from "@/components/PromoSlider.vue";
 import {useCurCityStore} from "@/store/cur-city";
 //api
 import {fetchDataItemsSlide} from "@/api/api-home";
+import {getCurrentExValutes} from "@/api/api-valute";
 //types
 import type {PromoItemSlide} from "@/types/types";
 
@@ -17,6 +18,7 @@ let curCity: ComputedRef<string> = computed(() => cityStore.curCity);
 
 onMounted(async () => {
   await fetchDataItemsSlide({loading, itemSlides, error, curCity});
+  getCurrentExValutes();
 })
 
 watch(

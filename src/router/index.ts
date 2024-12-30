@@ -1,4 +1,4 @@
-import {createMemoryHistory, createRouter} from 'vue-router';
+import {createWebHistory, createRouter} from 'vue-router';
 import {RouteRecordRaw} from "vue-router";
 import NotFound from "@/pages/NotFound.vue";
 import HomePage from '@/pages/HomePage.vue';
@@ -21,6 +21,6 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 export const router = createRouter({
-    history: createMemoryHistory(),
+    history: createWebHistory(),
     routes
 })

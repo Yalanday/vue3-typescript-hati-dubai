@@ -6,6 +6,15 @@ export interface PromoItemSlide {
     price: number,
 }
 
+export interface TypeItemSlide {
+    id: number,
+    city: string,
+    name: string,
+    type: string,
+    price: number,
+    images: {src: string}[],
+}
+
 export type FilterItemType = {
     id: number
     name: string,
@@ -24,4 +33,12 @@ export type HomeLinkType = {
     id: number,
     href: string,
     text: string,
+}
+
+export interface PropsStyle {
+    borderColor: string;
+    textColor: string;
+    backgroundColor: string;
+    hoverBackgroundColor: string;
+    hoverTextColor: string;
 }
