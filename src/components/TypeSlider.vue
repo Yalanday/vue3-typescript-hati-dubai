@@ -11,23 +11,23 @@ import {getCurrentExValutes} from "@/api/api-valute";
 // store
 import {useCurValuteStore} from "@/store/cur-valute";
 //types
-import type {PromoItemSlide} from "@/types/types";
+import type {TypeItemSlide} from "@/types/types";
 
 const props = defineProps({
   items: {
-    type: Array as () => PromoItemSlide[],
+    type: Array as () => TypeItemSlide[],
     default: () => ([]),
   },
 });
 
-const slides = ref([] as PromoItemSlide[]);
+const slides = ref([] as TypeItemSlide[]);
 const store = useCurValuteStore();
 const currentValute = computed(() => store.curValute);
 const cursDollar = ref(1);
 
 const formatPriceValue = (price: number) => {
   if (currentValute.value === 'dollar') {
-    return (formatNumber(price)+ ' $')
+    return (formatNumber(price) + ' $')
   } else {
     const rublNew = +(Number(price) * cursDollar.value).toFixed();
     return (formatNumber(rublNew) + ' ₽')
@@ -50,64 +50,74 @@ onMounted(
 </script>
 
 <template>
-  <div class="promo-slider">
-    <swiper
+  <div class="type-slider">
+    <swiper v-for="item in items"
         :spaceBetween="30"
         :effect="'fade'"
         :navigation="{
-          nextEl: '.promo-slider-next',
-          prevEl: '.promo-slider-prev',
+          nextEl: '.type-slider-next',
+          prevEl: '.type-slider-prev',
           disabledClass: 'disabled',
         }"
         :pagination="{clickable: true}"
         :modules="[EffectFade, Navigation, Pagination]"
-        class="PromoSwiper"
+        class="TypeSwiper"
     >
       <swiper-slide
-          v-for="slide in slides"
-          :key="slide.id"
+          v-for="(slide, index) in item.images"
+          :key="index"
       >
-        <img :src="slide.src"/>
-        <div class="promo-slider-content">
-          <div>
-            <p class="promo-slider-title" v-html="slide.text"></p>
-            <p class="promo-slider-price"> от {{ formatPriceValue(slide.price) }}</p>
-          </div>
-          <p class="promo-slider-city" v-html="slide.city"></p>
-        </div>
-      </swiper-slide>
-    </swiper>
-    <div class="container container__promo-controls">
+        <img :src="slide.src" :alt="`Slide ${index}`"/>
 
-      <div class="promo-slider-controls">
-        <button class="promo-slider-btn promo-slider-prev"></button>
-        <button class="promo-slider-btn promo-slider-next"></button>
+      </swiper-slide>
+      <div class="container container__type-controls">
+        <div class="type-slider-content">
+          <div>
+            <p class="type-slider-title" v-html="item.name"></p>
+            <p class="type-slider-price"> от {{ formatPriceValue(item.price) }}</p>
+          </div>
+          <p class="type-slider-city" v-html="item.city"></p>
+        </div>
+
+        <div class="type-slider-controls">
+          <button class="type-slider-btn type-slider-prev"></button>
+          <router-link class="type-slider-btn type-slider-btn--link" to="/detail">Смотреть</router-link>
+          <button class="type-slider-btn type-slider-next"></button>
+        </div>
       </div>
-    </div>
+    </swiper>
   </div>
 </template>
 
 <style lang="scss" scoped>
 
-.promo-slider {
+.type-slider {
   position: relative;
 
-  .container__promo-controls {
-    position: absolute;
-    left: 50%;
-    bottom: 45%;
-    transform: translateX(-50%);
-    z-index: 100;
+  .TypeSwiper {
+    margin-bottom: 60px;
   }
 
-  .promo-slider-controls {
+  .container__type-controls {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 100;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .type-slider-controls {
     display: flex;
     justify-content: space-between;
     padding: 0 80px;
-
+    margin-top: auto;
+    margin-bottom: 40px;
   }
 
-  .promo-slider-btn {
+  .type-slider-btn {
     position: relative;
     display: flex;
     align-items: center;
@@ -122,8 +132,24 @@ onMounted(
     transition: all .3s ease;
     font-size: 2.5rem;
 
+    &--link {
+      margin: auto;
+      width: auto;
+      height: 60px;
+      padding: 10px 40px;
+      border-radius: 25px;
+      opacity: 0.2;
+      font-size: 1.2rem;
+    }
+
     &:hover {
       background-color: #208B95;
+    }
+
+    &--link:hover {
+      color: #000000;
+      opacity: 1;
+      background-color: #ffffff;
 
     }
 
@@ -132,59 +158,61 @@ onMounted(
     }
   }
 
-  .promo-slider-btn:after {
+  .type-slider-btn:after {
     position: absolute;
     transform: translateY(-5%);
   }
 
-  .promo-slider-prev:after {
+  .type-slider-prev:after {
     content: '←';
 
   }
 
-  .promo-slider-next:after {
+  .type-slider-next:after {
     content: '→';
   }
 
-  .promo-slider-content {
+
+  .type-slider-content {
     width: 1280px;
     position: absolute;
     left: 50%;
-    bottom: 25px;
+    top: 45px;
     transform: translateX(-50%);
     z-index: 110;
     color: #ffffff;
-    height: 100%;
     padding: 0 80px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
-  .promo-slider-title {
+  .type-slider-title {
     text-transform: uppercase;
     width: 380px;
     font-size: 3rem;
     line-height: 100%;
-    margin: 0 0 5px;
+    margin: 0 0 10px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   }
 
-  .promo-slider-price {
+  .type-slider-price {
     margin: 0;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   }
 
-  .promo-slider-city {
+  .type-slider-city {
     text-transform: capitalize;
     line-height: 100%;
     margin: 0;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   }
+
 }
 
-.PromoSwiper {
-  height: 560px;
+
+.TypeSwiper {
+  height: 900px;
 
   .swiper-slide {
     width: 100%;
@@ -198,24 +226,31 @@ onMounted(
 }
 
 @media (max-width: 1279px) {
-  .PromoSwiper {
+  .TypeSwiper {
     height: 400px;
+    margin-bottom: 50px;
   }
 
-  .promo-slider {
+  .type-slider {
 
-    .promo-slider-content {
+    .type-slider-content {
       width: 768px;
       padding: 0 20px;
     }
 
-    .promo-slider-btn {
+    .type-slider-btn {
       width: 60px;
       height: 60px;
       font-size: 2rem;
     }
 
-    .promo-slider-controls {
+    .type-slider-btn--link {
+      width: 120px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .type-slider-controls {
       padding: 0 20px;
     }
   }

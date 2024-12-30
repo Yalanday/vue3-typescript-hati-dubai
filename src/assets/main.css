@@ -47,12 +47,12 @@ body ul {
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    /*border-left: 1px solid #ccc;*/
+    /*border-right: 1px solid #ccc;*/
     padding: 0 1rem;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1279px) {
     .container {
         max-width: 768px;
     }
@@ -63,23 +63,37 @@ body ul {
 }
 
 .PromoSwiper .swiper-button-prev,
-.PromoSwiper .swiper-button-next {
+.PromoSwiper .swiper-button-next,
+.TypeSwiper .swiper-button-prev,
+.TypeSwiper .swiper-button-next {
     display: none;
 }
 
 .promo-slider-prev.disabled,
-.promo-slider-next.disabled{
+.promo-slider-next.disabled,
+.type-slider-prev.disabled,
+.type-slider-next.disabled {
     opacity: 0.2;
     pointer-events: none;
 }
 
-.PromoSwiper .swiper-pagination-bullet {
+.PromoSwiper .swiper-pagination-bullet,
+.TypeSwiper .swiper-pagination-bullet {
     background-color: #ffffff;
     width: 50px;
     height: 3px;
     border-radius: 0;
 }
 
-.PromoSwiper .swiper-pagination-bullet-active {
+.PromoSwiper .swiper-pagination-bullet-active,
+.TypeSwiper .swiper-pagination-bullet-active {
     width: 100px;
+}
+
+.fixed-select .ant-select-arrow {
+    display: none;
+}
+
+.TypeSwiper .swiper-pagination {
+    z-index: 1000;
 }

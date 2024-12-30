@@ -6,11 +6,10 @@ import PromoLinks from "@/components/PromoLinks.vue";
 </script>
 
 <template>
-  <home-filter/>
-  <PromoTheBeast/>
   <promo-links />
+  <PromoTheBeast/>
+  <home-filter/>
 </template>
-
 <style scoped>
 
 </style>

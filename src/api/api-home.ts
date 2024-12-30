@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FetchDataSlidesArgs, FetchDataArgs} from "@/types/api-types";
+import {FetchDataSlidesArgs, FetchDataSlidesArgsType, FetchDataArgs} from "@/types/api-types";
 
 async function fetchData({url,loading, data, error}: FetchDataArgs): Promise<void> {
     try {
@@ -13,10 +13,11 @@ async function fetchData({url,loading, data, error}: FetchDataArgs): Promise<voi
     }
 }
 
+//для промо слайдера
 async function fetchDataItemsSlide({loading, itemSlides, error, curCity}: FetchDataSlidesArgs): Promise<void> {
     try {
         loading.value = true;
-        const response = await axios.get('https://dbd0282f034a13d8.mokky.dev/promo-items/?city=' + curCity.value);
+        const response = await axios.get('https://dbd0282f034a13d8.mokky.dev/promo-items/?promo=true&city=' + curCity.value);
         itemSlides.value = response.data;
     } catch (err: any) {
         error.value = err.message;
@@ -26,6 +27,18 @@ async function fetchDataItemsSlide({loading, itemSlides, error, curCity}: FetchD
     // console.log(itemSlides.value)
 }
 
+//для остальных слайдеров
+async function fetchDataItemsAllSlide({loading, itemSlides, error, curCity}: FetchDataSlidesArgsType): Promise<void> {
+    try {
+        loading.value = true;
+        const response = await axios.get('https://dbd0282f034a13d8.mokky.dev/hatas/?city=' + curCity.value);
+        itemSlides.value = response.data;
+    } catch (err: any) {
+        error.value = err.message;
+    } finally {
+        loading.value = false;
+    }
+    // console.log(itemSlides.value)
+}
 
-
-export {fetchData, fetchDataItemsSlide };
+export {fetchData, fetchDataItemsSlide, fetchDataItemsAllSlide };
