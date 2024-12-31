@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 // import required modules
 import {EffectFlip, Pagination, Navigation} from 'swiper/modules';
 
-const textConent = [
+const textContent = [
   {
     text: "Первопричиной снижения цен считается увеличение числа предложений на рынке недвижимости, что позволяет эмирату быть на третьем месте в списке городов мира."
   },
@@ -35,7 +35,7 @@ const textConent = [
 
       class="TextSwiper"
   >
-    <swiper-slide v-for="(item, index) in textConent" :key="index"
+    <swiper-slide v-for="(item, index) in textContent" :key="index"
     >
       <p class="slide-text">{{ item.text }}</p>
 

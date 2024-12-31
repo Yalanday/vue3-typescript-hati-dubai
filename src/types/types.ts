@@ -42,3 +42,9 @@ export interface PropsStyle {
     hoverBackgroundColor: string;
     hoverTextColor: string;
 }
+
+export type itemFavoriteType = {
+    img: string,
+    link: string,
+    label: string
+}

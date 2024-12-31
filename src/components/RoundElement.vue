@@ -1,18 +1,38 @@
-<script setup >
+<script setup lang="ts">
+import {ref} from "vue";
 
-defineProps({
+const props = defineProps({
   img: String,
   link: String,
-  label: String
+  label: String,
+  backgroundColor: {
+    type: String,
+    default: '#000000;'
+  },
+  backgroundColorHover: {
+    type: String,
+    default: '#ffffff;'
+  },
+  borderColor: {
+    type: String,
+    default: '#208B95'
+  },
 })
+
+const isHover = ref(false)
 
 </script>
 
 <template>
-  <div class="round-element-wrapper">
+  <div class="round-element-wrapper"
+       :style="`border-color: ${isHover ? props.borderColor : '#000000'};
+                `">
     <router-link :to="link"
                  class="round-element"
-                 :style="`-webkit-mask: url(${img}) no-repeat center; mask: url(${img}) no-repeat center;`"
+                 @mouseover="isHover = true"
+                 @mouseout="isHover = false"
+                 :style="`-webkit-mask: url(${img}) no-repeat center; mask: url(${img}) no-repeat center;
+                          background: ${isHover ? props.backgroundColorHover : props.backgroundColor};`"
                  :aria-label="label">
     </router-link>
   </div>
@@ -20,23 +40,21 @@ defineProps({
 
 <style scoped>
 .round-element-wrapper {
-  border: 1px solid #000000;
+  border: 1px solid;
   border-radius: 50%;
 }
 
 .round-element {
   width: 52px;
   height: 52px;
-  background: #000000;
   display: block;
 }
 
 .round-element-wrapper:hover {
   background: #208B95;
-  border-color: #208B95;
 }
 
-.round-element-wrapper:hover .round-element:hover {
+.round-element:hover {
   background: #ffffff;
 }
 </style>

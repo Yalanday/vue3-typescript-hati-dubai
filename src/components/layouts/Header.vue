@@ -2,7 +2,7 @@
 import Logo from "@/components/Logo.vue";
 import HeaderNav from "@/components/HeaderNav.vue";
 import HeaderFilter from "@/components/HeaderFilter.vue";
-import HeaderFavorites from "@/components/HeaderFavorites.vue";
+import IconFavorite from "@/components/HeaderFavorite.vue";
 import HeaderConnection from "@/components/HeaderConnection.vue";
 </script>
 
@@ -14,7 +14,7 @@ import HeaderConnection from "@/components/HeaderConnection.vue";
       </div>
       <header-nav/>
       <header-filter/>
-      <header-favorites/>
+      <icon-favorite/>
       <header-connection/>
     </div>
   </header>
