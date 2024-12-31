@@ -6,7 +6,7 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import {EffectFade, Navigation, Pagination} from 'swiper/modules'
-import {formatNumber} from "@/utils";
+import {useFormatPriceValue} from "@/hooks/hooks";
 import {getCurrentExValutes} from "@/api/api-valute";
 // store
 import {useCurValuteStore} from "@/store/cur-valute";
@@ -20,19 +20,12 @@ const props = defineProps({
   },
 });
 
-const slides = ref([] as PromoItemSlide[]);
 const store = useCurValuteStore();
 const currentValute = computed(() => store.curValute);
 const cursDollar = ref(1);
+const slides = ref([] as PromoItemSlide[]);
 
-const formatPriceValue = (price: number) => {
-  if (currentValute.value === 'dollar') {
-    return (formatNumber(price)+ ' $')
-  } else {
-    const rublNew = +(Number(price) * cursDollar.value).toFixed();
-    return (formatNumber(rublNew) + ' ₽')
-  }
-}
+const formatPriceValue = useFormatPriceValue;
 
 watch(
     () => props.items,
@@ -71,7 +64,7 @@ onMounted(
         <div class="promo-slider-content">
           <div>
             <p class="promo-slider-title" v-html="slide.text"></p>
-            <p class="promo-slider-price"> от {{ formatPriceValue(slide.price) }}</p>
+            <p class="promo-slider-price"> от {{ formatPriceValue(slide.price, currentValute, cursDollar) }}</p>
           </div>
           <p class="promo-slider-city" v-html="slide.city"></p>
         </div>

@@ -55,8 +55,10 @@ const cityValue = computed(
 
 .hero {
 
+  margin-bottom: 60px;
   .hero__top-block {
     display: flex;
+
   }
 
   .hero__title {

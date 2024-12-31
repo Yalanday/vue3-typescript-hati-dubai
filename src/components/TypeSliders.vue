@@ -21,7 +21,6 @@ const error = ref<Error | null>(null);
 let curCity: ComputedRef<string> = computed(() => cityStore.curCity);
 
 const itemsForSlider = ref([] as TypeItemSlide[])
-console.log(itemsForSlider)
 
 onMounted(async () => {
   await fetchDataItemsAllSlide({loading, itemSlides, error, curCity});
