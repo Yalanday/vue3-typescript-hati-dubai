@@ -1,7 +1,7 @@
 import axios from "axios";
-import {FetchDataSlidesArgs, FetchDataSlidesArgsType, FetchDataArgs} from "@/types/api-types";
+import {FetchDataSlidesArgs, FetchDataSlidesArgsType, FetchDataArgs, FetchDataNewsArgs} from "@/types/api-types";
 
-async function fetchData({url,loading, data, error}: FetchDataArgs): Promise<void> {
+async function fetchData({url, loading, data, error}: FetchDataArgs): Promise<void> {
     try {
         loading.value = true;
         const response = await axios.get(url);
@@ -38,7 +38,19 @@ async function fetchDataItemsAllSlide({loading, itemSlides, error, curCity}: Fet
     } finally {
         loading.value = false;
     }
-    // console.log(itemSlides.value)
 }
 
-export {fetchData, fetchDataItemsSlide, fetchDataItemsAllSlide };
+async function fetchDataNewsHome({url, loading, data, error}: FetchDataNewsArgs): Promise<void> {
+    try {
+        loading.value = true;
+        const response = await axios.get(url);
+        data.value = response.data.items;
+    } catch (err: any) {
+        error.value = err.message;
+    } finally {
+        loading.value = false;
+    }
+}
+
+
+export {fetchData, fetchDataItemsSlide, fetchDataItemsAllSlide, fetchDataNewsHome};

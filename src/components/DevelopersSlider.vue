@@ -217,7 +217,6 @@ const items = [
 
 .swiper-container {
   position: relative;
-  margin-bottom: 60px;
 }
 
 .DevSwiper {

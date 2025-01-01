@@ -5,15 +5,13 @@ import {fetchData} from "@/api/api-home";
 // types
 import type {HomeLinkType} from "@/types/types";
 
+const URL = 'https://dbd0282f034a13d8.mokky.dev/partner-links';
 const data = ref([] as HomeLinkType[]);
 const loading = ref<boolean>(true);
 const error = ref<Error | null>(null);
-const url = 'https://dbd0282f034a13d8.mokky.dev/partner-links'
-
-console.log(!data.value.length)
 
 onMounted(async () => {
-  await fetchData({url, loading, data, error});
+  await fetchData({url: URL, loading, data, error});
 });
 
 </script>
