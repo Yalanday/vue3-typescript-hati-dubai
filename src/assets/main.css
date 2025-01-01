@@ -82,15 +82,21 @@ body ul {
 .PromoSwiper .swiper-pagination-bullet,
 .TypeSwiper .swiper-pagination-bullet,
 .TextSwiper .swiper-pagination-bullet,
-.MiniSwiper .swiper-pagination-bullet{
+.MiniSwiper .swiper-pagination-bullet,
+.MiniFSSwiper .swiper-pagination-bullet{
     background-color: #ffffff;
     width: 50px;
     height: 3px;
     border-radius: 0;
 }
 
-.TextSwiper .swiper-pagination{
+.TextSwiper .swiper-pagination,
+.MiniFSSwiper .swiper-pagination{
     text-align: left;
+}
+
+.MiniFSSwiper .swiper-pagination{
+    padding-left: 35px;
 }
 
 .TextSwiper .swiper-pagination-bullet{
@@ -101,7 +107,8 @@ body ul {
 
 .PromoSwiper .swiper-pagination-bullet-active,
 .TypeSwiper .swiper-pagination-bullet-active,
-.MiniSwiper .swiper-pagination-bullet-active{
+.MiniSwiper .swiper-pagination-bullet-active,
+.MiniFSSwiper .swiper-pagination-bullet-active{
     width: 100px;
 }
 

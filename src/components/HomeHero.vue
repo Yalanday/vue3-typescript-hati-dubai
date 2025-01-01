@@ -10,7 +10,6 @@ import RoundedContainer from "@/components/RoundedContainer.vue";
 import {propsFilterStyle} from "@/props/style-collection";
 
 const curCityStore = useCurCityStore();
-console.log(curCityStore.curCity)
 
 const inDubai = computed(
     () => {

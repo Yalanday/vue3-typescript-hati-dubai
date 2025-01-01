@@ -6,12 +6,9 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import {EffectFade, Navigation, Pagination} from 'swiper/modules'
-import {useFormatPriceValue} from "@/hooks/hooks";
-import {getCurrentExValutes} from "@/api/api-valute";
-// store
-import {useCurValuteStore} from "@/store/cur-valute";
 //types
 import type {TypeItemSlide} from "@/types/types";
+import PriceUniversal from "@/components/PriceUniversal.vue";
 
 const props = defineProps({
   items: {
@@ -21,22 +18,11 @@ const props = defineProps({
 });
 
 const slides = ref([] as TypeItemSlide[]);
-const store = useCurValuteStore();
-const currentValute = computed(() => store.curValute);
-const cursDollar = ref(1);
-
-const formatPriceValue = useFormatPriceValue;
 
 watch(
     () => props.items,
     (newVal) => {
       slides.value = newVal
-    }
-)
-
-onMounted(
-    async () => {
-      cursDollar.value = await getCurrentExValutes();
     }
 )
 
@@ -67,7 +53,7 @@ onMounted(
         <div class="type-slider-content">
           <div>
             <p class="type-slider-title" v-html="item.name"></p>
-            <p class="type-slider-price">от {{ formatPriceValue(item.price, currentValute, cursDollar) }}</p>
+            <price-universal :price="item.price"/>
           </div>
           <p class="type-slider-city" v-html="item.city"></p>
         </div>

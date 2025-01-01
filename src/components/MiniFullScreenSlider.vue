@@ -6,16 +6,19 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import {Pagination} from 'swiper/modules';
+import PriceUniversal from "@/components/PriceUniversal.vue";
 
 type ImagesProps = {
   id: number,
-  src: string
+  src: string,
+  title: string,
+  price: number
 }
 
 defineProps(
     {
       images: {
-        type: Array as () => ImagesProps[]
+        type: Array as () => ImagesProps[],
       }
     }
 )
@@ -31,11 +34,15 @@ defineProps(
       :modules="[Pagination]"
       :space-between="10"
 
-      class="MiniSwiper"
+      class="MiniFSSwiper"
   >
     <swiper-slide v-for="item in images" :key="item.id"
     >
       <img :src="item.src" :alt="`slide № ${item.id}`"/>
+      <div class="slide-info">
+        <span> {{ item.title }}</span>
+        <price-universal :price="item.price"/>
+      </div>
 
     </swiper-slide>
 
@@ -43,9 +50,9 @@ defineProps(
 </template>
 
 <style scoped lang="scss">
-.MiniSwiper {
-  width: 297px;
-  height: 243px;
+.MiniFSSwiper {
+  width: 1248px;
+  height: 509px;
 
   .swiper-slide {
     background-color: #e5e5e5;
@@ -56,10 +63,22 @@ defineProps(
   }
 
   .swiper-slide img {
-    width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
+  .swiper-slide .slide-info {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+  }
+
+
 }
 
 </style>
