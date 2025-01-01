@@ -4,6 +4,7 @@ import Recommendations from "@/components/Recommendations.vue";
 import StrongProjects from "@/components/StrongProjects.vue";
 import CatalogDownload from "@/components/CatalogDownload.vue";
 import ActualSlider from "@/components/ActualSlider.vue";
+import DistrictSlider from "@/components/DistrictSlider.vue";
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import ActualSlider from "@/components/ActualSlider.vue";
   <strong-projects/>
   <catalog-download/>
   <actual-slider title="Актуально"/>
+  <district-slider title="Районы"/>
 
 </template>
 

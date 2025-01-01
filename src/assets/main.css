@@ -81,7 +81,8 @@ body ul {
 
 .PromoSwiper .swiper-pagination-bullet,
 .TypeSwiper .swiper-pagination-bullet,
-.TextSwiper .swiper-pagination-bullet{
+.TextSwiper .swiper-pagination-bullet,
+.MiniSwiper .swiper-pagination-bullet{
     background-color: #ffffff;
     width: 50px;
     height: 3px;
@@ -99,7 +100,8 @@ body ul {
 }
 
 .PromoSwiper .swiper-pagination-bullet-active,
-.TypeSwiper .swiper-pagination-bullet-active{
+.TypeSwiper .swiper-pagination-bullet-active,
+.MiniSwiper .swiper-pagination-bullet-active{
     width: 100px;
 }
 

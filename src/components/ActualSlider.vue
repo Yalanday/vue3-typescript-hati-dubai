@@ -14,6 +14,17 @@ import IconFavorite from "@/components/IconFavorite.vue";
 //props styles
 import {propsBlackStyle} from "@/props/style-collection";
 import CatalogCardLink from "@/components/CatalogCardLink.vue";
+import {useCurValuteStore} from "@/store/cur-valute";
+import {computed, onMounted, ref} from "vue";
+import {useFormatPriceValue} from "@/hooks/hooks";
+import {getCurrentExValutes} from "@/api/api-valute";
+import MiniSlider from "@/components/MiniSlider.vue";
+
+const store = useCurValuteStore();
+const currentValute = computed(() => store.curValute);
+const cursDollar = ref(1);
+
+const formatPriceValue = useFormatPriceValue;
 
 
 const modules = [FreeMode, Pagination, Navigation]
@@ -57,65 +68,269 @@ const items = [
     title: 'Bich hata goldens',
     src: '/images/rec/rec-1.png',
     city: 'dubai',
-    favorite: false
+    favorite: false,
+    type: 'live',
+    typeValue: 'Жилой комплекс',
+    price: 344234,
+    labelInfo: 'Сдача в 2025',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-1.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-2.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-3.png',
+      }
+    ]
   },
   {
     id: 2,
     title: 'Телек IP круглый год',
     src: '/images/rec/rec-2.png',
     city: 'dubai',
-    favorite: false
+    favorite: false,
+    type: 'app',
+    typeValue: 'Апартаменты',
+    price: 344234,
+    labelInfo: 'Только славяне',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-2.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-4.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-1.png',
+      }
+    ]
   },
   {
     id: 3,
     title: 'Inter trans bablos',
     src: '/images/rec/rec-3.png',
     city: 'dubai',
-    favorite: true
+    favorite: true,
+    type: 'app',
+    typeValue: 'Апартаменты',
+    price: 344234,
+    labelInfo: 'Без котов',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-3.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-1.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-5.png',
+      }
+    ]
   },
   {
     id: 4,
     title: 'chili villi vue js',
     src: '/images/rec/rec-4.png',
     city: 'dubai',
-    favorite: false
+    favorite: false,
+    type: 'live',
+    typeValue: 'Жилой комплекс',
+    price: 344234,
+    labelInfo: 'Сдача в 2025',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-4.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-2.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-3.png',
+      }
+    ]
   },
   {
     id: 5,
     title: 'major hata official',
     src: '/images/rec/rec-5.png',
     city: 'dubai',
-    favorite: true
+    favorite: true,
+    type: 'live',
+    typeValue: 'Жилой комплекс',
+    price: 344234,
+    labelInfo: 'Сдача в 2025',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-3.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-1.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-2.png',
+      }
+    ]
   },
   {
     id: 6,
     title: 'tik tak alladin',
     src: '/images/rec/rec-1.png',
     city: 'dubai',
-    favorite: false
+    favorite: false,
+    type: 'live',
+    typeValue: 'Жилой комплекс',
+    price: 344234,
+    labelInfo: 'Сдача в 2025',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-3.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-2.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-5.png',
+      }
+    ]
   },
   {
     id: 7,
     title: 'jean in bouttle',
     src: '/images/rec/rec-2.png',
     city: 'dubai',
-    favorite: false
+    favorite: false,
+    type: 'live',
+    typeValue: 'Жилой комплекс',
+    price: 344234,
+    labelInfo: 'Сдача в 2025',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-3.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-1.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-5.png',
+      }
+    ]
   },
   {
     id: 8,
     title: 'zloi macharaja',
     src: '/images/rec/rec-3.png',
     city: 'dubai',
-    favorite: false
+    favorite: false,
+    type: 'live',
+    typeValue: 'Жилой комплекс',
+    price: 344234,
+    labelInfo: 'Сдача в 2025',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-3.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-2.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-5.png',
+      }
+    ]
   },
   {
     id: 9,
     title: 'slovo arabacana',
     src: '/images/rec/rec-4.png',
     city: 'dubai',
-    favorite: false
+    favorite: false,
+    type: 'live',
+    typeValue: 'Жилой комплекс',
+    price: 344234,
+    labelInfo: 'Сдача в 2025',
+    options: {
+      bedroom: "2 спальни",
+      square: "455"
+    },
+    images: [
+      {
+        id: 1,
+        src: '/images/rec/rec-3.png',
+      },
+      {
+        id: 2,
+        src: '/images/rec/rec-1.png',
+      },
+      {
+        id: 3,
+        src: '/images/rec/rec-5.png',
+      }
+    ]
   }
 ]
+
+onMounted(
+    async () => {
+      cursDollar.value = await getCurrentExValutes();
+    }
+)
 
 </script>
 
@@ -128,27 +343,34 @@ const items = [
           :spaceBetween="spaceBetween"
           :freeMode="true"
           :navigation="{
-            nextEl: '.custom-button-next--cat',
-            prevEl: '.custom-button-prev--cat',
+            nextEl: '.custom-button-next--act',
+            prevEl: '.custom-button-prev--act',
         }"
           :pagination="false"
           :modules="modules"
-          class="HighSwiper"
+          class="ActualSwiper"
       >
         <swiper-slide v-for="item in items" :key="item.id">
-          <img :src="item.src" :alt="item.title">
-          <p class="slide-title">{{ item.title }}</p>
-          <div class="favorite">
-            <icon-favorite :id="item.id" :is-favorite="item.favorite"/>
+          <div class="mini-slider">
+            <mini-slider :images="item.images"/>
+          </div>
+          <div class="slide-info">
+            <span class="slide-type">{{ item.typeValue }}</span>
+            <p class="slide-title">{{ item.title }}</p>
+            <div class="slide-options">
+              <span class="slide-options__item slider-bedroom">{{ item.options.bedroom }}</span>
+              <span class="slide-options__item slider-square">{{ item.options.square }} м&#178;</span>
+            </div>
+            <span class="slide-price">от {{ formatPriceValue(item.price, currentValute, cursDollar) }}</span>
           </div>
         </swiper-slide>
 
       </swiper>
       <div class="custom-controls">
-        <div class="custom-button-prev--cat">
+        <div class="custom-button-prev--act">
           <rounded-container :style="stylesCustomButton" v-bind="propsBlackStyle">&#8249;</rounded-container>
         </div>
-        <div class="custom-button-next--cat">
+        <div class="custom-button-next--act">
           <rounded-container :style="stylesCustomButton" v-bind="propsBlackStyle">&#8250;</rounded-container>
         </div>
       </div>
@@ -160,9 +382,10 @@ const items = [
 
 .swiper-container {
   position: relative;
+  margin-bottom: 60px;
 }
 
-.HighSwiper {
+.ActualSwiper {
   height: 413px;
 
   .swiper-slide {
@@ -171,34 +394,68 @@ const items = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 50px;
-    background-color: black;
     overflow: hidden;
 
+    .mini-slider {
+      margin-bottom: 20px;
+    }
+
+    .slide-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0;
+    }
+
+    .slide-type,
     .slide-title {
-      padding: 30px 10px 5px;
-      color: #fff;
+      margin: 0;
+      padding: 0;
       font-size: 1.4rem;
       line-height: 1.1;
-      width: 60%;
       text-align: left;
       text-transform: uppercase;
-      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     }
 
-    .favorite {
-      position: absolute;
-      top: 30px;
-      right: 15px;
+    .slide-title {
+      margin-bottom: 20px;
     }
-  }
 
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 243px;
-    margin-bottom: auto;
-    border-radius: 50px;
+    .slide-options {
+      opacity: 0.5;
+      margin-bottom: 15px;
+      display: flex;
+      gap: 20px;
+
+      .slide-options__item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .slide-options__item::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .slider-bedroom::before {
+        background-image: url("/icons/betroom.svg");
+      }
+
+      .slider-square::before {
+        background-image: url("/icons/square.svg");
+      }
+    }
+
+    .slide-price {
+      font-size: 1rem;
+      font-weight: 500;
+    }
   }
 }
 
@@ -210,8 +467,8 @@ const items = [
   right: 0;
   z-index: 1000;
 
-  .custom-button-prev--cat.swiper-button-disabled,
-  .custom-button-next--cat.swiper-button-disabled {
+  .custom-button-prev--act.swiper-button-disabled,
+  .custom-button-next--act.swiper-button-disabled {
     opacity: 0.3;
     pointer-events: none;
 
