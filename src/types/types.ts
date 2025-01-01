@@ -35,6 +35,14 @@ export type HomeLinkType = {
     text: string,
 }
 
+export type NewsType = {
+    id: number,
+    title: string,
+    text: string,
+    author: string,
+    date: string,
+}
+
 export interface PropsStyle {
     borderColor: string;
     textColor: string;

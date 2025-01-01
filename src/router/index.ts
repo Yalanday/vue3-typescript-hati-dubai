@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound.vue";
 import SalePage from '@/pages/SalePage.vue';
 import CompanyPage from "@/pages/CompanyPage.vue";
 import HomePage from "@/pages/HomePage.vue";
+import NewsPage from "@/pages/NewsPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -25,6 +26,10 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/company',
         component: CompanyPage
+    },
+    {
+        path: '/news',
+        component: NewsPage
     },
 
 ];

@@ -40,7 +40,7 @@ defineProps(
     >
       <img :src="item.src" :alt="`slide № ${item.id}`"/>
       <div class="slide-info">
-        <span> {{ item.title }}</span>
+        <span class="slide-title"> {{ item.title }}</span>
         <price-universal :price="item.price"/>
       </div>
 
@@ -78,7 +78,12 @@ defineProps(
     text-shadow: 1px 1px 1px #000000;
   }
 
-
+  .swiper-slide .slide-title {
+    text-transform: uppercase;
+    font-size: 2rem;
+    max-width: 400px;
+    text-shadow: 2px 2px 2px #000000;
+  }
 }
 
 </style>
