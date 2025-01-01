@@ -10,21 +10,11 @@ import {FreeMode, Pagination, Navigation} from 'swiper/modules';
 // components
 import TitleSliders from "@/components/TitleSliders.vue";
 import RoundedContainer from "@/components/RoundedContainer.vue";
-import IconFavorite from "@/components/IconFavorite.vue";
 //props styles
 import {propsBlackStyle} from "@/props/style-collection";
-import CatalogCardLink from "@/components/CatalogCardLink.vue";
-import {useCurValuteStore} from "@/store/cur-valute";
-import {computed, onMounted, ref} from "vue";
-import {useFormatPriceValue} from "@/hooks/hooks";
-import {getCurrentExValutes} from "@/api/api-valute";
 import MiniSlider from "@/components/MiniSlider.vue";
+import PriceUniversal from "@/components/PriceUniversal.vue";
 
-const store = useCurValuteStore();
-const currentValute = computed(() => store.curValute);
-const cursDollar = ref(1);
-
-const formatPriceValue = useFormatPriceValue;
 
 
 const modules = [FreeMode, Pagination, Navigation]
@@ -326,12 +316,6 @@ const items = [
   }
 ]
 
-onMounted(
-    async () => {
-      cursDollar.value = await getCurrentExValutes();
-    }
-)
-
 </script>
 
 <template>
@@ -361,7 +345,7 @@ onMounted(
               <span class="slide-options__item slider-bedroom">{{ item.options.bedroom }}</span>
               <span class="slide-options__item slider-square">{{ item.options.square }} м&#178;</span>
             </div>
-            <span class="slide-price">от {{ formatPriceValue(item.price, currentValute, cursDollar) }}</span>
+            <price-universal class="slide-price"  :price="item.price"/>
           </div>
         </swiper-slide>
 
@@ -453,8 +437,7 @@ onMounted(
     }
 
     .slide-price {
-      font-size: 1rem;
-      font-weight: 500;
+      text-shadow: none;
     }
   }
 }

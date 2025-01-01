@@ -10,17 +10,8 @@ import TitleSliders from "@/components/TitleSliders.vue";
 import RoundedContainer from "@/components/RoundedContainer.vue";
 //props styles
 import {propsBlackStyle} from "@/props/style-collection";
-import {useFormatPriceValue} from "@/hooks/hooks";
-import {getCurrentExValutes} from "@/api/api-valute";
 // store
-import {useCurValuteStore} from "@/store/cur-valute";
-import {computed, onMounted, ref} from "vue";
-
-const store = useCurValuteStore();
-const currentValute = computed(() => store.curValute);
-const cursDollar = ref(1);
-
-const formatPriceValue = useFormatPriceValue;
+import PriceUniversal from "@/components/PriceUniversal.vue";
 
 const modules = [FreeMode, Pagination, Navigation]
 const stylesCustomButton = {
@@ -159,12 +150,6 @@ const items = [
   }
 ]
 
-onMounted(
-    async () => {
-      cursDollar.value = await getCurrentExValutes();
-    }
-)
-
 const filterItems = [
   {
     id: 1,
@@ -229,7 +214,7 @@ const filterHandle = (value: string) => {
           <div class="slide-text-content">
             <p class="type-item">{{ item.typeValue }}</p>
             <p class="slide-title">{{ item.title }}</p>
-            <p class="slide-price">от {{ formatPriceValue(item.price, currentValute, cursDollar) }}</p>
+            <price-universal class="slide-price" :price="item.price"/>
           </div>
           <div class="label-info">
             {{ item.labelInfo }}

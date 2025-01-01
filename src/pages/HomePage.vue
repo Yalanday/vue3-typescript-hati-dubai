@@ -5,6 +5,7 @@ import StrongProjects from "@/components/StrongProjects.vue";
 import CatalogDownload from "@/components/CatalogDownload.vue";
 import ActualSlider from "@/components/ActualSlider.vue";
 import DistrictSlider from "@/components/DistrictSlider.vue";
+import DevelopersHome from "@/components/DevelopersHome.vue";
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import DistrictSlider from "@/components/DistrictSlider.vue";
   <catalog-download/>
   <actual-slider title="Актуально"/>
   <district-slider title="Районы"/>
+  <developers-home/>
 
 </template>
 

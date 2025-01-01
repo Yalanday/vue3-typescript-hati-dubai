@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import {ref, computed, watch, onMounted} from 'vue'
+import {ref, watch, onMounted} from 'vue'
 import {Swiper, SwiperSlide} from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import {EffectFade, Navigation, Pagination} from 'swiper/modules'
-import {useFormatPriceValue} from "@/hooks/hooks";
-import {getCurrentExValutes} from "@/api/api-valute";
-// store
-import {useCurValuteStore} from "@/store/cur-valute";
+import PriceUniversal from './PriceUniversal.vue'
+
 //types
 import type {PromoItemSlide} from "@/types/types";
 
@@ -20,12 +18,7 @@ const props = defineProps({
   },
 });
 
-const store = useCurValuteStore();
-const currentValute = computed(() => store.curValute);
-const cursDollar = ref(1);
 const slides = ref([] as PromoItemSlide[]);
-
-const formatPriceValue = useFormatPriceValue;
 
 watch(
     () => props.items,
@@ -34,11 +27,6 @@ watch(
     }
 )
 
-onMounted(
-    async () => {
-      cursDollar.value = await getCurrentExValutes();
-    }
-)
 
 </script>
 
@@ -64,7 +52,7 @@ onMounted(
         <div class="promo-slider-content">
           <div>
             <p class="promo-slider-title" v-html="slide.text"></p>
-            <p class="promo-slider-price"> от {{ formatPriceValue(slide.price, currentValute, cursDollar) }}</p>
+            <price-universal :price="slide.price"/>
           </div>
           <p class="promo-slider-city" v-html="slide.city"></p>
         </div>
@@ -160,11 +148,6 @@ onMounted(
     font-size: 3rem;
     line-height: 100%;
     margin: 0 0 5px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-  }
-
-  .promo-slider-price {
-    margin: 0;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   }
 

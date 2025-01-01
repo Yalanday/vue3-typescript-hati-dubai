@@ -10,14 +10,10 @@ import {FreeMode, Pagination, Navigation} from 'swiper/modules';
 // components
 import TitleSliders from "@/components/TitleSliders.vue";
 import RoundedContainer from "@/components/RoundedContainer.vue";
-import IconFavorite from "@/components/IconFavorite.vue";
 //props styles
 import {propsBlackStyle} from "@/props/style-collection";
 import CatalogCardLink from "@/components/CatalogCardLink.vue";
-import {useCurValuteStore} from "@/store/cur-valute";
-import {computed, onMounted, ref} from "vue";
-import {getCurrentExValutes} from "@/api/api-valute";
-import {useFormatPriceValue} from "@/hooks/hooks";
+import PriceUniversal from "@/components/PriceUniversal.vue";
 
 
 const modules = [FreeMode, Pagination, Navigation]
@@ -100,18 +96,6 @@ const items = [
   }
 ]
 
-const store = useCurValuteStore();
-const currentValute = computed(() => store.curValute);
-const cursDollar = ref(1);
-
-const formatPriceValue = useFormatPriceValue;
-
-onMounted(
-    async () => {
-      cursDollar.value = await getCurrentExValutes();
-    }
-)
-
 </script>
 
 <template>
@@ -134,7 +118,7 @@ onMounted(
           <img :src="item.src" :alt="item.title">
           <div class="slide-text-content">
             <p class="slide-title">{{ item.title }}</p>
-            <p class="slide-price">от {{ formatPriceValue(item.price, currentValute, cursDollar) }}</p>
+            <price-universal class="slide-price" :price="item.price"/>
           </div>
 
           <div class="dynamic-round-link">
