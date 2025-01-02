@@ -40,7 +40,6 @@ const options2 = ref<SelectProps['options']>([
     label: 'Жилые комплексы',
   }
 ]);
-
 const options3 = ref<SelectProps['options']>([
   {
     value: 'expensive',
@@ -63,11 +62,11 @@ const handleChange = (value: string) => {
 
 <template>
   <div class="hero-filter">
-    <a-space style="height: 50px; padding-left: 60px; gap: 60px">
+    <a-space class="filter-wrap">
       <a-select
           ref="select"
           v-model:value="value1"
-          style="width: 120px;"
+          class="select-1"
           :options="options1"
           @focus="focus"
           @change="handleChange"
@@ -75,13 +74,13 @@ const handleChange = (value: string) => {
       ></a-select>
 
       <a-select v-model:value="value2"
-                style="width: 190px"
+                class="select-2"
                 :options="options2"
                 :bordered="false"
       ></a-select>
 
       <a-select v-model:value="value3"
-                style="width: 120px"
+                class="select-3"
                 :options="options3"
                 :bordered="false"
       ></a-select>
@@ -91,12 +90,30 @@ const handleChange = (value: string) => {
     </rounded-container>
   </div>
 </template>
- <style scoped lang="scss">
+<style scoped lang="scss">
 .hero-filter {
   display: flex;
   max-width: 1280px;
   width: 100%;
   justify-content: space-between;
+
+  .filter-wrap {
+    height: 50px;
+    padding-left: 60px;
+    display: flex;
+  }
+
+  .select-1 {
+    width: 120px;
+  }
+
+  .select-2 {
+    width: 190px;
+  }
+
+  .select-3 {
+    width: 120px;
+  }
 
   .hero-filter__btn {
     display: flex;
@@ -108,4 +125,67 @@ const handleChange = (value: string) => {
     cursor: pointer;
   }
 }
- </style>
+
+@media (max-width: 1279px) {
+  .hero-filter {
+    max-width: 700px;
+    width: 100%;
+    justify-content: space-between;
+
+    .hero-filter__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .filter-wrap {
+      padding-left: 20px;
+    }
+
+    .select-1 {
+      width: 100px;
+    }
+
+    .select-2 {
+      width: 190px;
+    }
+
+    .select-3 {
+      width: 100px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+
+  .hero-filter {
+    flex-direction: column;
+
+    .filter-wrap {
+      padding-left: 0;
+      flex-direction: column;
+      height: auto;
+      align-items: center;
+
+    }
+
+    .select-1,
+    .select-2,
+    .select-3{
+      width: 320px;
+      background-color: #ffffff;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 50px;
+    }
+
+    .select-3 {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+</style>

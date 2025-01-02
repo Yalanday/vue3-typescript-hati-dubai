@@ -16,6 +16,16 @@
   align-items: center;
   background-color: black;
   padding: 0 5px;
-
 }
+
+@media (max-width: 768px) {
+  .logo-link {
+    width: 110px;
+  }
+
+  .logo-link img {
+    width: 100px;
+  }
+}
+
 </style>

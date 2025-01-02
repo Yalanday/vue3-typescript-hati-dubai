@@ -39,4 +39,5 @@ const connectionItems :ConnectionType[] = [
   display: flex;
   gap: 10px;
 }
+
 </style>

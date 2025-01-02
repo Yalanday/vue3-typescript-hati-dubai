@@ -15,8 +15,6 @@ import {propsBlackStyle} from "@/props/style-collection";
 import MiniSlider from "@/components/MiniSlider.vue";
 import PriceUniversal from "@/components/PriceUniversal.vue";
 
-
-
 const modules = [FreeMode, Pagination, Navigation]
 const stylesCustomButton = {
   borderRadius: '50%',
@@ -320,10 +318,10 @@ const items = [
 
 <template>
   <div class="container">
-    <title-sliders :title="title"/>
+    <title-sliders class="title-slider" :title="title"/>
     <div class="swiper-container">
       <swiper
-          :slidesPerView="slidesPerView"
+          :breakpoints="{ 320:{ slidesPerView:1 }, 630:{ slidesPerView:2 }, 767:{ slidesPerView:2, }, 1279: { slidesPerView: slidesPerView} }"
           :spaceBetween="spaceBetween"
           :freeMode="true"
           :navigation="{
@@ -345,7 +343,7 @@ const items = [
               <span class="slide-options__item slider-bedroom">{{ item.options.bedroom }}</span>
               <span class="slide-options__item slider-square">{{ item.options.square }} м&#178;</span>
             </div>
-            <price-universal class="slide-price"  :price="item.price"/>
+            <price-universal class="slide-price" :price="item.price"/>
           </div>
         </swiper-slide>
 
@@ -367,6 +365,14 @@ const items = [
 .swiper-container {
   position: relative;
   margin-bottom: 60px;
+
+  @media (max-width: 1279px) {
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 10px;
+  }
 }
 
 .ActualSwiper {
@@ -404,6 +410,10 @@ const items = [
 
     .slide-title {
       margin-bottom: 20px;
+
+      @media (max-width: 1279px) {
+        margin-bottom: 10px;
+      }
     }
 
     .slide-options {
@@ -411,6 +421,9 @@ const items = [
       margin-bottom: 15px;
       display: flex;
       gap: 20px;
+      @media (max-width: 1279px) {
+        margin-bottom: 10px;
+      }
 
       .slide-options__item {
         display: flex;
@@ -450,6 +463,14 @@ const items = [
   right: 0;
   z-index: 1000;
 
+  @media (max-width: 1279px) {
+    top: -85px;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
   .custom-button-prev--act.swiper-button-disabled,
   .custom-button-next--act.swiper-button-disabled {
     opacity: 0.3;
@@ -458,5 +479,18 @@ const items = [
   }
 }
 
+@media (max-width: 629px) {
+  .ActualSwiper {
+    width: 300px;
+  }
+}
 
+.title-slider {
+  @media (max-width: 1279px) {
+    margin-bottom: 40px;
+  }
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+}
 </style>

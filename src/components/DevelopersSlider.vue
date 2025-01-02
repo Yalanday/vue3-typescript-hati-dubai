@@ -88,7 +88,7 @@ const items = [
   },
   {
     id: 2,
-    title: 'Major Residences off',
+    title: 'Major Residences',
     description: 'Serenia Residences is a hidden gem on The Palm Jumeirah, home to a select few. This magnificent property is a private residential resort that offers an elite collection of 1, 2, 3 bedroom apartments and half-floor penthouses set in a stunning location overlooking The Palm, Atlantis, Burj Al Arab, the Dubai Marina skyline and the captivating blue seas of The Gulf.  ',
     src: '/images/dev/dev-2.png',
     city: 'dubai',
@@ -221,6 +221,14 @@ const items = [
 
 .DevSwiper {
   height: 930px;
+  @media (max-width: 1279px) {
+    height: auto;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
 
   .swiper-slide {
     text-align: center;
@@ -240,6 +248,10 @@ const items = [
       align-items: flex-end;
       padding: 0;
       margin-bottom: 40px;
+
+      @media (max-width: 1279px) {
+        margin-bottom: 20px;
+      }
     }
 
     .slide-title {
@@ -253,6 +265,16 @@ const items = [
       line-height: 1.1;
       text-align: left;
       text-transform: uppercase;
+
+      @media (max-width: 1279px) {
+        font-size: 3rem;
+        height: auto;
+        width: 100%;
+        padding: 0;
+      }
+      @media (max-width: 767px) {
+        font-size: 2rem;
+      }
     }
 
     .slide-descr {
@@ -260,6 +282,10 @@ const items = [
       width: 50%;
       padding: 0 0 0 40px;
       text-align: left;
+
+      @media (max-width: 1279px) {
+        display: none;
+      }
     }
 
     .slide-links {
@@ -268,6 +294,10 @@ const items = [
       align-items: center;
       justify-content: flex-start;
       gap: 20px;
+
+      @media (max-width: 767px) {
+        gap: 10px;
+      }
 
       .slide-link {
         display: block;
@@ -278,6 +308,11 @@ const items = [
         text-transform: uppercase;
         color: #000;
         text-decoration: none;
+
+      @media (max-width: 767px) {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+      }
       }
 
       .slide-link:hover {
@@ -297,6 +332,15 @@ const items = [
   top: 255px;
   left: 53%;
   z-index: 1000;
+
+  @media (max-width: 1279px) {
+    left: 83%;
+    top: 75px;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 
   .custom-button-prev--act.swiper-button-disabled,
   .custom-button-next--act.swiper-button-disabled {

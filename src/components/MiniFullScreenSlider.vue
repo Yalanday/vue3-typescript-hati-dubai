@@ -27,26 +27,27 @@ defineProps(
 </script>
 
 <template>
-  <swiper
-      :effect="'flip'"
-      :grabCursor="true"
-      :pagination="{clickable: true}"
-      :modules="[Pagination]"
-      :space-between="10"
+    <swiper
+        :effect="'flip'"
+        :grabCursor="true"
+        :pagination="{clickable: true}"
+        :modules="[Pagination]"
+        :space-between="10"
 
-      class="MiniFSSwiper"
-  >
-    <swiper-slide v-for="item in images" :key="item.id"
+        class="MiniFSSwiper"
     >
-      <img :src="item.src" :alt="`slide № ${item.id}`"/>
-      <div class="slide-info">
-        <span class="slide-title"> {{ item.title }}</span>
-        <price-universal :price="item.price"/>
-      </div>
+      <swiper-slide v-for="item in images" :key="item.id"
+      >
+        <img :src="item.src" :alt="`slide № ${item.id}`"/>
+        <div class="slide-info">
+          <span class="slide-title"> {{ item.title }}</span>
+          <price-universal :price="item.price"/>
+        </div>
 
-    </swiper-slide>
+      </swiper-slide>
 
-  </swiper>
+    </swiper>
+
 </template>
 
 <style scoped lang="scss">
@@ -54,15 +55,25 @@ defineProps(
   width: 1248px;
   height: 509px;
 
+  @media screen and (max-width: 1279px) {
+    width: 735px;
+    height: 300px;
+  }
+
+
   .swiper-slide {
     background-color: #e5e5e5;
     background-position: center;
     background-size: cover;
     border-radius: 25px;
     overflow: hidden;
+    @media screen and (max-width: 767px) {
+      border-radius: 0;
+    }
   }
 
   .swiper-slide img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
   }
@@ -76,6 +87,10 @@ defineProps(
     align-items: flex-start;
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
+
+    @media screen and (max-width: 767px) {
+      max-width: 300px;
+    }
   }
 
   .swiper-slide .slide-title {
@@ -83,6 +98,10 @@ defineProps(
     font-size: 2rem;
     max-width: 400px;
     text-shadow: 2px 2px 2px #000000;
+
+    @media screen and (max-width: 767px) {
+      font-size: 1.5rem;
+    }
   }
 }
 

@@ -35,13 +35,23 @@ const links = [
   display: flex;
   gap: 18px;
 
+  @media (max-width: 767px) {
+    gap:10px
+  }
+
   .app-links__link {
     color: #000000;
     display: block;
     font-size: 0.8rem;
     line-height: 0.9rem;
     text-transform: uppercase;
+    text-align: center;
     padding: 20px 30px;
+
+    @media (max-width: 767px) {
+      padding: 20px 10px;
+
+    }
   }
 
   .app-links__link:hover {

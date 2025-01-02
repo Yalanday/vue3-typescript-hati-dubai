@@ -38,7 +38,7 @@ const footerSocialItems: ConnectionType[] = [
   <div class="footer__social footer-social">
     <ul class="footer-social__list">
       <li v-for="item in footerSocialItems" :key="item.id" class="footer-social__item">
-        <RoundElement :img="item.img" :link="item.link" :label="item.label"/>
+        <RoundElement class="round" :img="item.img" :link="item.link" :label="item.label"/>
       </li>
     </ul>
   </div>
@@ -49,4 +49,6 @@ const footerSocialItems: ConnectionType[] = [
   display: flex;
   gap: 10px;
 }
+
+
 </style>

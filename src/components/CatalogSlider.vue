@@ -121,10 +121,10 @@ const items = [
 
 <template>
   <div class="container">
-    <title-sliders :title="title"/>
+    <title-sliders class="title-slider" :title="title"/>
     <div class="swiper-container">
       <swiper
-          :slidesPerView="slidesPerView"
+          :breakpoints="{ 320:{ slidesPerView:1 }, 500:{ slidesPerView:2 }, 767:{ slidesPerView:3, }, 1279: { slidesPerView: slidesPerView} }"
           :spaceBetween="spaceBetween"
           :freeMode="true"
           :navigation="{
@@ -229,5 +229,31 @@ const items = [
   }
 }
 
+@media (max-width: 500px) {
+  .HighSwiper {
+    width: 300px;
+}}
+
+@media (max-width: 1279px) {
+  .title-slider {
+    font-size: 3rem;
+    margin-bottom: 40px;
+  }
+
+  .custom-controls {
+    top: -85px
+  }
+}
+
+@media (max-width: 767px) {
+  .title-slider {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .custom-controls {
+    display: none;
+  }
+}
 
 </style>

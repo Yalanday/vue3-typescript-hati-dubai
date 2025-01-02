@@ -72,6 +72,12 @@ const footerNavLinks = [
     justify-content: space-between;
     gap: 5px;
     flex-wrap: wrap;
+
+    @media (max-width: 1279px) {
+      justify-content: center;
+      gap:15px;
+      row-gap: 5px;
+    }
   }
 
   .footer-nav__link {

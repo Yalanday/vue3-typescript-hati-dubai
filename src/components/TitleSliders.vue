@@ -22,4 +22,16 @@ withDefaults(defineProps<TitleInterface>(), {
   text-transform: uppercase;
   margin: 0 0 60px;
 }
+
+@media (max-width: 1279px) {
+  .title-sliders {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .title-sliders {
+    font-size: 2rem;
+  }
+}
 </style>

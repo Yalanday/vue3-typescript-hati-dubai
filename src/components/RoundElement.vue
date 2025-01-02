@@ -57,4 +57,12 @@ const isHover = ref(false)
 .round-element:hover {
   background: #ffffff;
 }
+
+@media (max-width: 768px) {
+  .header .round-element,
+  .footer .round-element{
+    width: 40px;
+    height: 40px;
+  }
+}
 </style>

@@ -52,11 +52,22 @@ onMounted(async () => {
 .news {
 
   margin-bottom: 60px;
+  @media (max-width: 1279px) {
+    margin-bottom: 40px;
+  }
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
 
   .news__container {
     padding-bottom: 30px;
     margin-bottom: 30px;
     border-bottom: 1px solid #000000;
+
+    @media (max-width: 1279px) {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
   }
 
   .news__title-wrapper {
@@ -73,6 +84,10 @@ onMounted(async () => {
     display: block;
     padding: 12px 48px;
     text-transform: uppercase;
+
+    @media (max-width: 1279px) {
+      padding: 12px 34px;
+    }
   }
 
   .news__link:hover {
@@ -88,6 +103,15 @@ onMounted(async () => {
   .news__previews {
     display: flex;
     gap: 40px;
+
+    @media (max-width: 1279px) {
+      gap: 30px;
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 }
 
