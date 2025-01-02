@@ -58,4 +58,24 @@ const textContent = [
   }
 }
 
+@media (max-width: 1279px) {
+  .TextSwiper {
+    width: 350px;
+    height: 180px;
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 430px;
+      padding: 1rem 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .TextSwiper {
+    display: none;
+  }
+}
+
 </style>

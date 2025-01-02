@@ -16,4 +16,10 @@ const title: Title = "Надежные проекты";
 .strong-projects {
   margin-bottom: 60px;
 }
+
+@media (max-width: 1279px) {
+  .strong-projects {
+    margin-bottom: 40px;
+  }
+}
 </style>

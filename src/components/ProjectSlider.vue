@@ -186,7 +186,7 @@ const filterHandle = (value: string) => {
 
 <template>
   <div class="container">
-    <title-sliders :title="title"/>
+    <title-sliders class="title-slider" :title="title"/>
     <div class="project-slider-filter filter">
       <ul class="filter__list">
         <li v-for="item in filterItems" :key="item.id" class="filter__item">
@@ -198,7 +198,7 @@ const filterHandle = (value: string) => {
     </div>
     <div class="swiper-container">
       <swiper
-          :slidesPerView="slidesPerView"
+          :breakpoints="{ 320:{ slidesPerView:1 }, 767:{ slidesPerView:2, }, 1279: { slidesPerView: slidesPerView} }"
           :spaceBetween="spaceBetween"
           :freeMode="true"
           :navigation="{
@@ -328,8 +328,6 @@ const filterHandle = (value: string) => {
       padding-bottom: 42px;
       clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
     }
-
-
   }
 
   .swiper-slide img {
@@ -351,9 +349,64 @@ const filterHandle = (value: string) => {
   .custom-button-next--prj.swiper-button-disabled {
     opacity: 0.3;
     pointer-events: none;
-
   }
 }
 
+@media (max-width: 1279px) {
+  .title-slider {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
 
+  .project-slider-filter {
+    .filter__list {
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    span {
+      height: 40px;
+      min-width: 80px;
+      padding: 5px 15px;
+      cursor: pointer;
+    }
+  }
+
+  .custom-controls {
+    top: -67px
+  }
+}
+
+@media (max-width: 767px) {
+
+  .title-slider {
+    font-size: 2rem;
+  }
+
+  .project-slider-filter {
+    .filter__list {
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    span {
+      height: 40px;
+      min-width: 80px;
+      padding: 5px 15px;
+      cursor: pointer;
+    }
+  }
+
+  .HighSwiper {
+    width: 340px;
+    height: 580px;
+  }
+
+  .custom-controls {
+    display: none;
+  }
+}
 </style>

@@ -15,6 +15,10 @@ import DevelopersSlider from "@/components/DevelopersSlider.vue";
 </template>
 
 <style scoped lang="scss">
-.developers {}
+.developers {
+  .title {
+
+  }
+}
 
 </style>

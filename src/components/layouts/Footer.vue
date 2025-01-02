@@ -44,11 +44,15 @@ import FooterAppLinks from "@/components/FooterAppLinks.vue";
       margin: 0;
       font-size: 0.8rem;
       text-align: justify;
+
     }
   }
 
   .footer__bottom-block {
     display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 20px;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 0;
@@ -57,6 +61,12 @@ import FooterAppLinks from "@/components/FooterAppLinks.vue";
       display: flex;
       align-items: center;
       gap: 3rem;
+
+      @media (max-width: 1279px) {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+      }
     }
   }
 

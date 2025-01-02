@@ -25,8 +25,8 @@ const countDown = () => {
 </script>
 
 <template>
-  <section class="catalog-download">
-    <div class="catalog-download__container container">
+  <section class="catalog-download container">
+    <div class="catalog-download__container ">
       <div class="catalog-download__content">
         <h2 class="catalog-download__title title">
           Уникальный выбор жилья в каталоге
@@ -100,4 +100,36 @@ const countDown = () => {
     color: #ffffff;
   }
 }
+
+@media screen and (max-width: 1279px) {
+  .catalog-download {
+    height: 400px;
+    margin-bottom: 40px;
+
+    .catalog-download__content {
+      width: 80%;
+      padding: 2.6rem;
+    }
+
+    .title {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .catalog-download {
+    margin-bottom: 30px;
+
+    .catalog-download__content {
+      width: 90%;
+      padding: 2rem;
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+  }
+}
+
 </style>

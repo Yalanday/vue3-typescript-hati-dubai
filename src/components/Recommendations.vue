@@ -16,4 +16,10 @@ const title: Title = "Рекомендации";
 .recommendations {
   margin-bottom: 60px;
 }
+
+@media (max-width: 1279px) {
+  .recommendations {
+    margin-bottom: 40px;
+  }
+}
 </style>

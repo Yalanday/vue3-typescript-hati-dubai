@@ -4,6 +4,12 @@ import HeaderNav from "@/components/HeaderNav.vue";
 import HeaderFilter from "@/components/HeaderFilter.vue";
 import IconFavorite from "@/components/HeaderFavorite.vue";
 import HeaderConnection from "@/components/HeaderConnection.vue";
+import BurgerButton from "@/components/BurgerButton.vue";
+import {ref} from "vue";
+
+
+const isOpen = ref(false);
+const toggleNav = () => (isOpen.value = !isOpen.value);
 </script>
 
 <template>
@@ -12,10 +18,11 @@ import HeaderConnection from "@/components/HeaderConnection.vue";
       <div class="header__logo">
         <Logo/>
       </div>
-      <header-nav/>
+      <header-nav :isOpen="isOpen"/>
       <header-filter/>
-      <icon-favorite/>
+      <icon-favorite class="header__favorite"/>
       <header-connection/>
+      <burger-button @click="toggleNav" :isOpen="isOpen"/>
     </div>
   </header>
 </template>
@@ -32,5 +39,14 @@ import HeaderConnection from "@/components/HeaderConnection.vue";
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
+
+@media (max-width: 768px) {
+  .header__favorite {
+    display: none;
+  }
+
+}
+
 </style>

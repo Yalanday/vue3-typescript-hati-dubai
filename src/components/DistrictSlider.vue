@@ -100,10 +100,10 @@ const items = [
 
 <template>
   <div class="container">
-    <title-sliders :title="title"/>
+    <title-sliders class="title-slider" :title="title"/>
     <div class="swiper-container">
       <swiper
-          :slidesPerView="slidesPerView"
+          :breakpoints="{ 320:{ slidesPerView:1 }, 767:{ slidesPerView:2, }, 1279: { slidesPerView: slidesPerView} }"
           :spaceBetween="spaceBetween"
           :freeMode="true"
           :navigation="{
@@ -148,6 +148,14 @@ const items = [
 
 .DistrictSwiper {
   height: 649px;
+  @media (max-width: 767px) {
+    width: 410px;
+  }
+  @media (max-width: 450px) {
+    width: 100%;
+    height: 550px;
+  }
+
 
   .swiper-slide {
     text-align: center;
@@ -163,7 +171,7 @@ const items = [
     .slide-text-content {
       position: absolute;
       width: 300px;
-      height: 170px;
+      min-height: 170px;
       border-radius: 50px 0 50px 0;
       left: 0;
       top: 0;
@@ -173,6 +181,15 @@ const items = [
       align-items: flex-start;
       justify-content: flex-start;
       padding: 37px;
+
+      @media (max-width: 1279px) {
+        width: 280px;
+      }
+
+      @media (max-width: 767px) {
+        width: 260px;
+      }
+
     }
 
     .slide-title {
@@ -212,6 +229,13 @@ const items = [
   right: 0;
   z-index: 1000;
 
+  @media (max-width: 1279px) {
+    top: -85px;
+  }
+  @media (max-width: 767px) {
+    display: none;
+  }
+
   .custom-button-prev--cat.swiper-button-disabled,
   .custom-button-next--cat.swiper-button-disabled {
     opacity: 0.3;
@@ -220,5 +244,12 @@ const items = [
   }
 }
 
-
+.title-slider {
+  @media (max-width: 1279px) {
+    margin-bottom: 40px;
+  }
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+}
 </style>

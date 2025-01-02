@@ -42,7 +42,7 @@ const cityValue = computed(
     >
       <div class="hero__bottom-block-container container">
         <h2 class="hero__title hero__title--bottom">новостроек <br> в&nbsp;{{ cityValue }}</h2>
-        <rounded-container style="width: 70%; align-self: center" v-bind="propsFilterStyle">
+        <rounded-container class="wrap-filter" style="align-self: center" v-bind="propsFilterStyle">
           <hero-filter/>
         </rounded-container>
       </div>
@@ -55,9 +55,14 @@ const cityValue = computed(
 .hero {
 
   margin-bottom: 60px;
+
+  .wrap-filter {
+    width: 70%;
+  }
+
   .hero__top-block {
     display: flex;
-
+    gap: 20px
   }
 
   .hero__title {
@@ -88,8 +93,50 @@ const cityValue = computed(
     justify-content: space-between;
     padding-bottom: 30px;
   }
+}
+
+@media (max-width: 1279px) {
+  .hero {
+    margin-bottom: 40px;
+
+    .hero__title {
+      font-size: 5rem;
+    }
+
+    .wrap-filter {
+      width: 90%;
+    }
+
+    .hero__bottom-block {
+      width: 100%;
+      height: 358px;
+      background-size: 100% 100%;
+    }
+  }
+}
 
 
+@media (max-width: 767px) {
+  .hero {
+    margin-bottom: 40px;
+
+    .hero__title {
+      font-size: 2rem;
+      width: 100%;
+    }
+
+    .wrap-filter {
+      width: 320px;
+      background: none !important;
+      border: none !important;
+    }
+
+    .hero__bottom-block {
+      width: 100%;
+      height: 358px;
+      background-size: 100% 100%;
+    }
+  }
 }
 
 </style>

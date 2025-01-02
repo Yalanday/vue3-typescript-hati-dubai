@@ -118,4 +118,10 @@ function handleScroll() {
 .fixed-select .ant-select-arrow {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .header-filter {
+  display: none;
+  }
+}
 </style>

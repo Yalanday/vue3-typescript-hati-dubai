@@ -28,6 +28,14 @@ defineProps<PropsNewsItem>()
   gap: 10px;
   margin: 0;
 
+  @media (max-width: 1279px) {
+    gap: 5px
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
   .news__data {
     opacity: 0.5;
   }
@@ -36,6 +44,16 @@ defineProps<PropsNewsItem>()
     margin: 0;
     font-size: 1.8rem;
     text-transform: uppercase;
+
+    @media (max-width: 1279px) {
+      font-size: 1.4rem;
+      min-height: 180px;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 1.2rem;
+      min-height: 0;
+    }
   }
 
   .news__text {
