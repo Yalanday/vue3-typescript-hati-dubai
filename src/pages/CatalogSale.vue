@@ -2,7 +2,6 @@
 import {ref, Ref} from "vue";
 import CatalogFilter from "@/components/CatalogFilter.vue";
 import CardsList from "@/components/CardsList.vue";
-import NewsHome from "@/components/NewsHome.vue";
 import FormSub from "@/components/FormSub.vue";
 
 let activeFilter: Ref<string> = ref('all');
