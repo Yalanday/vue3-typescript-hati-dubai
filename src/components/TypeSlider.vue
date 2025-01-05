@@ -31,16 +31,16 @@ watch(
 <template>
   <div class="type-slider">
     <swiper v-for="item in items"
-        :spaceBetween="30"
-        :effect="'fade'"
-        :navigation="{
+            :spaceBetween="30"
+            :effect="'fade'"
+            :navigation="{
           nextEl: '.type-slider-next',
           prevEl: '.type-slider-prev',
           disabledClass: 'disabled',
         }"
-        :pagination="{clickable: true}"
-        :modules="[EffectFade, Navigation, Pagination]"
-        class="TypeSwiper"
+            :pagination="{clickable: true}"
+            :modules="[EffectFade, Navigation, Pagination]"
+            class="TypeSwiper"
     >
       <swiper-slide
           v-for="(slide, index) in item.images"
@@ -173,6 +173,15 @@ watch(
     line-height: 100%;
     margin: 0 0 10px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 1279px) {
+      width: 300px;
+      font-size: 2rem;
+    }
+
+    @media (max-width: 767px) {
+      width: 250px;
+    }
   }
 
   .type-slider-price {
@@ -227,11 +236,45 @@ watch(
       width: 120px;
       height: 40px;
       font-size: 1rem;
+      opacity: 1;
     }
 
     .type-slider-controls {
       padding: 0 20px;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .TypeSwiper {
+    height: 400px;
+    margin-bottom: 50px;
+  }
+
+  .type-slider {
+
+    .type-slider-content {
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .type-slider-btn {
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+    }
+
+    .type-slider-btn--link {
+      width: 120px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .type-slider-controls .type-slider-prev,
+    .type-slider-controls .type-slider-next{
+      display: none;
+    }
+
   }
 }
 

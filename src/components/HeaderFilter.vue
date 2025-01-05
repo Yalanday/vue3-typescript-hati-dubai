@@ -67,7 +67,8 @@ function handleScroll() {
 </script>
 
 <template>
-  <div class="header-filter">
+  <div class="header-filter"
+       :class="{'fixed-filter': scrolled}">
     <a-space>
       <a-select
           :ref="select1"
@@ -87,6 +88,7 @@ function handleScroll() {
                 @change="handleChangeValute"
                 :bordered="false"
                 :class="{'fixed-select': scrolled}"
+                class="mobile-select-2"
       >
       </a-select>
 
@@ -119,9 +121,18 @@ function handleScroll() {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .header-filter {
-  display: none;
+    position: fixed;
+    top: 85%;
+    background-color: #ffffff;
+    border-radius: 50px;
+    z-index: 1000;
+  }
+
+  .fixed-filter {
+    top: 75px;
+    right: 20px;
   }
 }
 </style>

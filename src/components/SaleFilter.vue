@@ -96,6 +96,15 @@ watch(
 .home-filter__container {
   padding-top: 2rem;
   padding-bottom: 2rem;
+
+  @media (max-width: 1279px) {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    padding-left: 0.6rem;
+  }
 }
 
 .home-filter__list {
@@ -110,6 +119,14 @@ watch(
   color: #000000;
   cursor: pointer;
   text-transform: uppercase;
+
+  @media (max-width: 1279px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
 }
 
 .home-filter__item:hover {
@@ -127,11 +144,6 @@ watch(
     flex-wrap: wrap;
     row-gap: 10px;
   }
-
-  .home-filter__item {
-    font-size: 1.4rem;
-  }
-
 }
 
 </style>

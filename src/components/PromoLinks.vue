@@ -95,4 +95,23 @@ onMounted(async () => {
   }
 }
 
+@media (max-width: 767px) {
+
+  .promo-links__container {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .promo-links__list {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 0.5rem;
+  }
+
+  .promo-links__item a {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+    text-align: center;
+  }
+}
+
 </style>

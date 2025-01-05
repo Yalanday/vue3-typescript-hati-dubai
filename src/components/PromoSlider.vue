@@ -149,6 +149,11 @@ watch(
     line-height: 100%;
     margin: 0 0 5px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 1279px) {
+      width: 280px;
+      font-size: 2rem;
+    }
   }
 
   .promo-slider-city {
@@ -169,7 +174,6 @@ watch(
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
 }
 
@@ -193,6 +197,31 @@ watch(
 
     .promo-slider-controls {
       padding: 0 20px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .PromoSwiper {
+    height: 200px;
+    width: 100%;
+  }
+
+  .promo-slider {
+
+    .promo-slider-content {
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .promo-slider-btn {
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+    }
+
+    .promo-slider-controls {
+      display: none;
     }
   }
 }
