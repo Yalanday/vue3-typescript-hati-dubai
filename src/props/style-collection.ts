@@ -31,3 +31,11 @@ export const propsFilterStyle: PropsStyle = {
     hoverBackgroundColor: '#ffffff',
     hoverTextColor: '#ffffff',
 }
+
+export const propsCatalogFilter: PropsStyle = {
+    borderColor: '#ffffff',
+    textColor: '#ffffff',
+    backgroundColor: '#208B95',
+    hoverBackgroundColor: '#ffffff',
+    hoverTextColor: '#208B95',
+}

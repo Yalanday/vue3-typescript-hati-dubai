@@ -7,25 +7,25 @@ import type {ConnectionType} from "@/types/types";
 const footerSocialItems: ConnectionType[] = [
   {
     id: 1,
-    img: '/public/icons/vk.svg',
+    img: '/icons/vk.svg',
     link: 'javascript:void(0)',
     label: 'vk'
   },
   {
     id: 1,
-    img: '/public/icons/insta.svg',
+    img: '/icons/insta.svg',
     link: 'javascript:void(0)',
     label: 'instagram'
   },
   {
     id: 1,
-    img: '/public/icons/tik-tok.svg',
+    img: '/icons/tik-tok.svg',
     link: 'javascript:void(0)',
     label: 'tik-tok'
   },
   {
     id: 1,
-    img: '/public/icons/youtube.svg',
+    img: '/icons/youtube.svg',
     link: 'javascript:void(0)',
     label: 'youtube'
   }

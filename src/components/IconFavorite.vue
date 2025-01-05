@@ -32,7 +32,7 @@ const isActive = ref(props.isFavorite)
     display: block;
     width: 50px;
     height: 50px;
-    mask: url('/public/icons/favorites.svg') no-repeat center;
+    mask: url('/icons/favorites.svg') no-repeat center;
     background: #000000;
   }
 

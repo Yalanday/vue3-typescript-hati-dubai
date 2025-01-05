@@ -6,7 +6,7 @@ import {itemFavoriteType} from "@/types/types";
 
 const itemFavorite: itemFavoriteType =
     {
-      img: '/public/icons/favorites.svg',
+      img: '/icons/favorites.svg',
       link: '/favorites',
       label: 'Favorites'
     }

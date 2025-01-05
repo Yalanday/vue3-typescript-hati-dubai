@@ -14,6 +14,7 @@ import RoundedContainer from "@/components/RoundedContainer.vue";
 import {propsBlackStyle} from "@/props/style-collection";
 import MiniSlider from "@/components/MiniSlider.vue";
 import PriceUniversal from "@/components/PriceUniversal.vue";
+import CardOptions from "@/components/CardOptions.vue";
 
 const modules = [FreeMode, Pagination, Navigation]
 const stylesCustomButton = {
@@ -339,10 +340,11 @@ const items = [
           <div class="slide-info">
             <span class="slide-type">{{ item.typeValue }}</span>
             <p class="slide-title">{{ item.title }}</p>
-            <div class="slide-options">
-              <span class="slide-options__item slider-bedroom">{{ item.options.bedroom }}</span>
-              <span class="slide-options__item slider-square">{{ item.options.square }} м&#178;</span>
-            </div>
+<!--            <div class="slide-options">-->
+<!--              <span class="slide-options__item slider-bedroom">{{ item.options.bedroom }}</span>-->
+<!--              <span class="slide-options__item slider-square">{{ item.options.square }} м&#178;</span>-->
+<!--            </div>-->
+            <card-options :bedroom="item.options.bedroom" :square="item.options.square"/>
             <price-universal class="slide-price" :price="item.price"/>
           </div>
         </swiper-slide>

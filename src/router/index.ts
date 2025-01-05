@@ -5,6 +5,7 @@ import SalePage from '@/pages/SalePage.vue';
 import CompanyPage from "@/pages/CompanyPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import NewsPage from "@/pages/NewsPage.vue";
+import CatalogSale from "@/pages/CatalogSale.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -16,11 +17,7 @@ const routes: Array<RouteRecordRaw> = [
         component: HomePage
     },
     {
-        path: '/sale',
-        component: SalePage
-    },
-    {
-        path: '/sale',
+        path: '/best',
         component: SalePage
     },
     {
@@ -28,9 +25,14 @@ const routes: Array<RouteRecordRaw> = [
         component: CompanyPage
     },
     {
+        path: '/sale',
+        component: CatalogSale
+    },
+    {
         path: '/news',
         component: NewsPage
     },
+
 
 ];
 

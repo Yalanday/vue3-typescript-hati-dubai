@@ -8,19 +8,19 @@ import type {ConnectionType} from "@/types/types";
 const connectionItems :ConnectionType[] = [
   {
     id: 1,
-    img: '/public/icons/whatsapp.svg',
+    img: '/icons/whatsapp.svg',
     link: 'javascript:void(0)',
     label: 'whatsapp'
   },
   {
     id: 2,
-    img: '/public/icons/telegram.svg',
+    img: '/icons/telegram.svg',
     link: 'javascript:void(0)',
     label: 'Telegram'
   },
   {
     id: 3,
-    img: '/public/icons/telefon.svg',
+    img: '/icons/telefon.svg',
     link: 'javascript:void(0)',
     label: 'Phone'
   }

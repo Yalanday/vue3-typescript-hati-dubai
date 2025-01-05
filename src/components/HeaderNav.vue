@@ -9,12 +9,12 @@ type HeaderNavItem = {
 }
 
 const navItems: HeaderNavItem[] = [
+  {label: 'Лучшие', link: '/best', active: false},
   {label: 'Продажа', link: '/sale', active: true},
   {label: 'Аренда', link: '/blog', active: false},
   {label: 'Новостройки', link: '/contact', active: false},
   {label: 'Виллы', link: '/contact', active: false},
-  {label: 'Сервисы', link: '/contact', active: false},
-  {label: 'Компании', link: '/company', active: false},
+  {label: 'Застройщики', link: '/company', active: false},
 ];
 
 defineProps(
@@ -112,5 +112,18 @@ defineProps(
   border: none;
     padding: 5px 0;
   }
+}
+.nav .router-link-active {
+  position: relative;
+}
+
+.nav .router-link-active::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: #208B95;
+  bottom: -37px;
+
 }
 </style>
