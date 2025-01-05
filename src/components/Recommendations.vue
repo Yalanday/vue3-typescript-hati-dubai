@@ -1,14 +1,24 @@
 <script setup lang="ts">
 import CatalogSlider from "@/components/CatalogSlider.vue";
-
+//types
+import {PropertyCatalogType} from "@/types/types";
 type Title = string;
 const title: Title = "Рекомендации";
+
+defineProps({
+  items: {
+    type: Array as () => Array<PropertyCatalogType>,
+    default: () => [],
+  }
+});
+
+
 
 </script>
 
 <template>
   <section class="recommendations">
-    <catalog-slider :title="title"/>
+    <catalog-slider :items="items" :title="title"/>
   </section>
 </template>
 

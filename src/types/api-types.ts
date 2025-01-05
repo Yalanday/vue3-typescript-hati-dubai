@@ -1,5 +1,5 @@
 import {ComputedRef, Ref} from "vue";
-import type {PromoItemSlide, TypeItemSlide, HomeLinkType, NewsType} from "@/types/types";
+import type {PromoItemSlide, TypeItemSlide, HomeLinkType, NewsType, PropertyCatalogType} from "@/types/types";
 
 export type FetchDataSlidesArgs = {
     itemSlides: Ref<PromoItemSlide[]>;
@@ -17,8 +17,15 @@ export type FetchDataSlidesArgsType = {
 
 
 
-export type FetchDataArgs = {
+export type FetchDataArgs<T> = {
     data: Ref<HomeLinkType[]>;
+    loading: Ref<boolean>;
+    error: Ref<Error | null>;
+    url: string
+}
+
+export type FetchDataArgsCatalog = {
+    data: Ref<PropertyCatalogType[]>;
     loading: Ref<boolean>;
     error: Ref<Error | null>;
     url: string

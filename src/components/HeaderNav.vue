@@ -49,6 +49,7 @@ defineProps(
   padding: 0 10px;
 }
 
+
 .close-btn {
   display: none;
 }
@@ -82,12 +83,14 @@ defineProps(
   }
 
   .nav__item:hover {
-    background-color: #000000;
+    background: none;
   }
 
   .nav__item:hover a {
-    color: #ffffff;
+    color: inherit;
   }
+
+
 }
 
 @media (max-width: 767px) {
@@ -109,10 +112,11 @@ defineProps(
     width: 100%;
   }
   .nav__item {
-  border: none;
+    border: none;
     padding: 5px 0;
   }
 }
+
 .nav .router-link-active {
   position: relative;
 }
@@ -124,6 +128,10 @@ defineProps(
   height: 3px;
   background-color: #208B95;
   bottom: -37px;
+
+  @media (max-width: 767px) {
+    bottom: -10px;
+  }
 
 }
 </style>

@@ -1,20 +1,37 @@
 <script setup lang="ts">
-import {ref, Ref} from "vue";
+import {computed, ref, Ref, ComputedRef, onMounted} from "vue";
 import CatalogFilter from "@/components/CatalogFilter.vue";
 import CardsList from "@/components/CardsList.vue";
 import FormSub from "@/components/FormSub.vue";
+import {useCurCityStore} from "@/store/cur-city";
+import {useCatalogStore} from "@/store/catalog-store";
+import {fetchData} from "@/api/api-home";
+import {FetchDataArgsCatalog} from "@/types/api-types";
+import {PropertyCatalogType} from "@/types/types";
+
+const URL: string = 'https://dbd0282f034a13d8.mokky.dev/catalog';
+const data = ref([]);
+const loading = ref<boolean>(true);
+const error = ref<Error | null>(null);
+
+const curCityStore = useCurCityStore();
+const catalogStore = useCatalogStore();
+const curCuty = computed(() => {
+  return curCityStore.curCity
+});
 
 let activeFilter: Ref<string> = ref('all');
+
 
 const cardsFilterItems = [
   {
     id: 1,
-    value: 'all',
+    value: '',
     label: 'Все'
   },
   {
     id: 2,
-    value: 'sea',
+    value: 'see',
     label: 'У моря'
   },
   {
@@ -24,15 +41,33 @@ const cardsFilterItems = [
   },
   {
     id: 4,
-    value: 'city',
+    value: 'in-city',
     label: 'В городе'
   }
 ];
 
+const locationType: ComputedRef<string> = computed(() => {
+  return catalogStore.location
+})
+
+const countItems = (value: string) => {
+
+  if (value === '') {
+    return data.value.filter((item: PropertyCatalogType) => item.city === curCuty.value).length
+  } else {
+    return data.value.filter((item: PropertyCatalogType) => item.location === value && item.city === curCuty.value).length
+  }
+};
+
 function clickHandlerFilter(value: string) {
   activeFilter.value = value;
-  console.log(activeFilter.value);
+  catalogStore.setLocation(value);
 }
+
+onMounted(async () => {
+  await fetchData<FetchDataArgsCatalog[]>({url: URL, loading, data, error});
+})
+
 
 </script>
 
@@ -54,11 +89,11 @@ function clickHandlerFilter(value: string) {
               class="cards-filter__item"
               :class="{active: activeFilter === item.value}">
             <span>{{ item.label }}</span>
-            <span>125</span>
+            <span>{{ countItems(item.value) }}</span>
           </li>
         </ul>
       </div>
-      <cards-list/>
+      <cards-list :locationType="locationType"/>
     </div>
   </section>
   <form-sub/>

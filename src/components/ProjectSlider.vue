@@ -12,6 +12,7 @@ import RoundedContainer from "@/components/RoundedContainer.vue";
 import {propsBlackStyle} from "@/props/style-collection";
 // store
 import PriceUniversal from "@/components/PriceUniversal.vue";
+import {PropertyCatalogType} from "@/types/types";
 
 const modules = [FreeMode, Pagination, Navigation]
 const stylesCustomButton = {
@@ -33,8 +34,8 @@ defineProps(
         type: String,
       },
       items: {
-        type: Array,
-        required: false
+        type: Array as () => Array<PropertyCatalogType>,
+        default: () => [],
       },
       slidesPerView: {
         type: Number,
@@ -47,108 +48,6 @@ defineProps(
 
     }
 )
-
-const items = [
-  {
-    id: 1,
-    title: 'Bich hata goldens',
-    src: '/images/rec/rec-1.png',
-    city: 'dubai',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025'
-  },
-  {
-    id: 2,
-    title: 'Телек IP круглый год',
-    src: '/images/rec/rec-2.png',
-    city: 'dubai',
-    favorite: false,
-    type: 'app',
-    typeValue: 'Апартаменты',
-    price: 344234,
-    labelInfo: 'Только славяне'
-  },
-  {
-    id: 3,
-    title: 'Inter trans bablos',
-    src: '/images/rec/rec-3.png',
-    city: 'dubai',
-    favorite: true,
-    type: 'app',
-    typeValue: 'Апартаменты',
-    price: 344234,
-    labelInfo: 'Без котов'
-  },
-  {
-    id: 4,
-    title: 'chili villi vue js',
-    src: '/images/rec/rec-4.png',
-    city: 'dubai',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025'
-  },
-  {
-    id: 5,
-    title: 'major hata official',
-    src: '/images/rec/rec-5.png',
-    city: 'dubai',
-    favorite: true,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025'
-  },
-  {
-    id: 6,
-    title: 'tik tak alladin',
-    src: '/images/rec/rec-1.png',
-    city: 'dubai',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025'
-  },
-  {
-    id: 7,
-    title: 'jean in bouttle',
-    src: '/images/rec/rec-2.png',
-    city: 'dubai',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025'
-  },
-  {
-    id: 8,
-    title: 'zloi macharaja',
-    src: '/images/rec/rec-3.png',
-    city: 'dubai',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025'
-  },
-  {
-    id: 9,
-    title: 'slovo arabacana',
-    src: '/images/rec/rec-4.png',
-    city: 'dubai',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025'
-  }
-]
 
 const filterItems = [
   {

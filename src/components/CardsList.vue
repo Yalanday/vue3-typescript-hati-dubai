@@ -1,15 +1,38 @@
 <script setup lang="ts">
-import {ref, computed} from 'vue';
+import {ref, computed, onMounted, watch} from 'vue';
 import CardOptions from "@/components/CardOptions.vue";
 import PriceUniversal from "@/components/PriceUniversal.vue";
+//store
+import {useCatalogStore} from "@/store/catalog-store";
+import {useCurCityStore} from "@/store/cur-city";
+//api
+import {fetchData} from "@/api/api-home";
+//types
+import {FetchDataArgsCatalog} from "@/types/api-types";
+import {PropertyCatalogType} from "@/types/types";
+import LoaderSpiner from "@/components/LoaderSpiner.vue";
 
+const catalogStore = useCatalogStore();
+const curCityStore = useCurCityStore();
+const curCity = computed(() => curCityStore.curCity);
 const currentPage = ref(1);
 const startIndex = ref(0);
 const itemsPerPage = 6;
 const endIndex = ref(itemsPerPage);
+const URL: string = 'https://dbd0282f034a13d8.mokky.dev/catalog';
+const data = ref([]);
+const loading = ref<boolean>(true);
+const error = ref<Error | null>(null);
+const cards = computed(() => {
+  return catalogStore.catalog;
+});
 
+const originalCards = ref([]); // Хранение исходных данных
+const locationType = computed(
+    () => catalogStore.location
+)
 
-function setPagination(items: any[]) {
+function setPagination(items: PropertyCatalogType[]) {
   return Math.ceil(items.length / itemsPerPage);
 }
 
@@ -23,342 +46,44 @@ function changePage(page: number) {
   endIndex.value = startIndex.value + itemsPerPage;
 }
 
-const cards = [
-  {
-    id: 1,
-    src: '/images/catalog-img.jpg',
-    title: 'The Palm Jumeirah',
-    city: 'dubai',
-    district: 'Зеленая долина',
-    developer: 'Самолетчик',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 2,
-    src: '/images/catalog-img.jpg',
-    title: 'The Palm sdsd Umeirah',
-    city: 'dubai',
-    district: 'Дутово',
-    developer: 'Вертолёт групп',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 3,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 54',
-    city: 'dubai',
-    district: 'Дикий',
-    developer: 'Партнёр',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 4,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 342',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 5,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 6,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 7,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 8,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 9,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 10,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 11,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 12,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 13,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 14,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 15,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 16,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 17,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 18,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  },
-  {
-    id: 19,
-    src: '/images/catalog-img.jpg',
-    title: 'Card 1',
-    city: 'dubai',
-    district: 'sdf',
-    developer: 'dfdf',
-    favorite: false,
-    type: 'live',
-    typeValue: 'Жилой комплекс',
-    price: 344234,
-    labelInfo: 'Сдача в 2025',
-    options: {
-      bedroom: "2 спальни",
-      square: "455"
-    }
-  }
-]
-
-const pages = ref(setPagination(cards));
+const pages = computed(() => setPagination(cards.value));
 
 const currentCardsList = computed(() => {
-  return cards.slice(startIndex.value, endIndex.value);
+  return catalogStore.catalog.slice(startIndex.value, endIndex.value);
 })
+
+onMounted(async () => {
+  await fetchData<FetchDataArgsCatalog[]>({url: URL, loading, data, error});
+  originalCards.value = data.value;
+  catalogStore.setCatalog(data.value.filter((item: PropertyCatalogType) => item.city === curCity.value));
+  changePage(1); // Устанавливает исходное состояние пагинации
+})
+
+watch(currentPage, () => {
+  changePage(currentPage.value);
+})
+
+watch([curCity, locationType],
+    async () => {
+
+      if (locationType.value === '') {
+        await fetchData<FetchDataArgsCatalog[]>({url: URL, loading, data, error});
+        catalogStore.setCatalog(data.value.filter((item: PropertyCatalogType) => item.city === curCity.value));
+        changePage(1);
+      } else {
+        await fetchData<FetchDataArgsCatalog[]>({url: URL, loading, data, error});
+        catalogStore.setCatalog(data.value.filter((item: PropertyCatalogType) => item.city === curCity.value && item.location === locationType.value));
+        changePage(1);
+      }
+    }
+)
+
 
 </script>
 
 <template>
   <div class="catalog-wrapper">
+    <LoaderSpiner :loading="loading"/>
     <div class="catalog__cards-list cards-list">
       <div v-for="card in currentCardsList" :key="card.id" class="cards-list__item">
         <img width="400" height="256" :src="card.src" :alt="card.title"/>
@@ -407,9 +132,14 @@ const currentCardsList = computed(() => {
 .cards-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 30px;
   row-gap: 30px;
+  column-gap: 20px;
+
+  @media (max-width: 1279px) {
+    column-gap: 15px;
+  }
 }
 
 .cards-list__item {

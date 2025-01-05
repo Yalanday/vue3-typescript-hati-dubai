@@ -56,3 +56,30 @@ export type itemFavoriteType = {
     link: string,
     label: string
 }
+
+export type PropertyCatalogType = {
+    id: number;
+    developer: string;
+    rec: boolean;
+    actual: boolean;
+    strong: boolean;
+    offer: string;
+    title: string;
+    src: string;
+    city: string;
+    district: string;
+    location: string;
+    favorite: boolean;
+    type: string;
+    typeValue: string;
+    price: number;
+    labelInfo: string;
+    options: {
+        bedroom: string;
+        square: string;
+    };
+    images: {
+        id: number;
+        src: string;
+    }[];
+}

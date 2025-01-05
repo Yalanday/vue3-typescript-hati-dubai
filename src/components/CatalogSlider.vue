@@ -14,7 +14,8 @@ import IconFavorite from "@/components/IconFavorite.vue";
 //props styles
 import {propsBlackStyle} from "@/props/style-collection";
 import CatalogCardLink from "@/components/CatalogCardLink.vue";
-
+import {PropertyCatalogType} from "@/types/types";
+//api
 
 const modules = [FreeMode, Pagination, Navigation]
 const stylesCustomButton = {
@@ -36,8 +37,8 @@ defineProps(
         type: String,
       },
       items: {
-        type: Array,
-        required: false
+        type: Array as () => Array<PropertyCatalogType>,
+        default: () => [],
       },
       slidesPerView: {
         type: Number,
@@ -47,75 +48,10 @@ defineProps(
         type: Number,
         default: 20
       }
-
     }
 )
 
-const items = [
-  {
-    id: 1,
-    title: 'Bich hata goldens',
-    src: '/images/rec/rec-1.png',
-    city: 'dubai',
-    favorite: false
-  },
-  {
-    id: 2,
-    title: 'Телек IP круглый год',
-    src: '/images/rec/rec-2.png',
-    city: 'dubai',
-    favorite: false
-  },
-  {
-    id: 3,
-    title: 'Inter trans bablos',
-    src: '/images/rec/rec-3.png',
-    city: 'dubai',
-    favorite: true
-  },
-  {
-    id: 4,
-    title: 'chili villi vue js',
-    src: '/images/rec/rec-4.png',
-    city: 'dubai',
-    favorite: false
-  },
-  {
-    id: 5,
-    title: 'major hata official',
-    src: '/images/rec/rec-5.png',
-    city: 'dubai',
-    favorite: true
-  },
-  {
-    id: 6,
-    title: 'tik tak alladin',
-    src: '/images/rec/rec-1.png',
-    city: 'dubai',
-    favorite: false
-  },
-  {
-    id: 7,
-    title: 'jean in bouttle',
-    src: '/images/rec/rec-2.png',
-    city: 'dubai',
-    favorite: false
-  },
-  {
-    id: 8,
-    title: 'zloi macharaja',
-    src: '/images/rec/rec-3.png',
-    city: 'dubai',
-    favorite: false
-  },
-  {
-    id: 9,
-    title: 'slovo arabacana',
-    src: '/images/rec/rec-4.png',
-    city: 'dubai',
-    favorite: false
-  }
-]
+
 
 </script>
 
