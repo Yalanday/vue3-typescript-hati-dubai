@@ -1,5 +1,8 @@
-# vue-ts
+# Vue.js 3, TypeScript, Pinia, AntDesign, Swiper
 
+API для данных карточек сделано с использованием сервиса-конструктора моковых api - https://mokky.dev/
+
+API для курса валюты - https://www.cbr-xml-daily.ru/daily_json.js
 
 ![hero img](/public/readme-hero.png)
 

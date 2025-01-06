@@ -47,8 +47,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '/village',
         component: Village
     }
-
-
 ];
 
 export const router = createRouter({
