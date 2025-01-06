@@ -14,7 +14,7 @@ const navItems: HeaderNavItem[] = [
   {label: 'Аренда', link: '/rent', active: false},
   {label: 'Новостройки', link: '/new-home', active: false},
   {label: 'Виллы', link: '/village', active: false},
-  {label: 'Застройщики', link: '/company', active: false},
+  {label: 'Новости', link: '/news', active: false},
 ];
 
 defineProps(

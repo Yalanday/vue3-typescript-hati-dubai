@@ -24,6 +24,8 @@ const data = ref([]);
 const loading = ref<boolean>(true);
 const error = ref<Error | null>(null);
 
+
+
 const dataRec = computed (() => {
   return catalogStore.dataRec;
 });

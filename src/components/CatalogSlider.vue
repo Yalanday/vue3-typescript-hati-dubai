@@ -48,8 +48,10 @@ defineProps(
         type: Number,
         default: 20
       }
+
     }
 )
+
 
 
 

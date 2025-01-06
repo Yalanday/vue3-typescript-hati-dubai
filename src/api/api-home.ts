@@ -13,17 +13,6 @@ async function fetchData<T>({url, loading, data, error}: FetchDataArgs<T>): Prom
     }
 }
 
-async function fetchDataCatalog({url, loading, data, error}: FetchDataArgsCatalog): Promise<void> {
-    try {
-        loading.value = true;
-        const response = await axios.get(url);
-        data.value = response.data;
-    } catch (err: any) {
-        error.value = err.message;
-    } finally {
-        loading.value = false;
-    }
-}
 
 //для промо слайдера
 async function fetchDataItemsSlide({loading, itemSlides, error, curCity}: FetchDataSlidesArgs): Promise<void> {
@@ -65,4 +54,4 @@ async function fetchDataNewsHome({url, loading, data, error}: FetchDataNewsArgs)
 }
 
 
-export {fetchData, fetchDataItemsSlide, fetchDataItemsAllSlide, fetchDataNewsHome, fetchDataCatalog};
+export {fetchData, fetchDataItemsSlide, fetchDataItemsAllSlide, fetchDataNewsHome};
