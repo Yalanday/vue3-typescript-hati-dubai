@@ -44,5 +44,6 @@ onMounted(async () => {
 .price-universal {
   margin: 0;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
 }
 </style>

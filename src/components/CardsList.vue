@@ -213,14 +213,14 @@ watch([curCity, locationType, curType], async () => {
   }
 
   .price {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     text-shadow: none;
   }
 
   .btn {
     background-color: #208B95;
     border: 1px solid #208B95;
-    width: 150px;
+    width: 130px;
     padding: 10px;
     color: #ffffff;
     border-radius: 50px;

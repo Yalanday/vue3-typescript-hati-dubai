@@ -145,7 +145,7 @@ const renderTitle = () => {
 
   &__filter {
     background-color: #208B95;
-    padding: 1.6rem 0;
+    padding: 1rem 0;
   }
 
   &__title {
