@@ -5,6 +5,7 @@ import PriceUniversal from "@/components/PriceUniversal.vue";
 //store
 import {useCatalogStore} from "@/store/catalog-store";
 import {useCurCityStore} from "@/store/cur-city";
+import {useCurTypeStore} from "@/store/cur-type-home";
 //api
 import {fetchData} from "@/api/api-home";
 //types
@@ -12,14 +13,24 @@ import {FetchDataArgsCatalog} from "@/types/api-types";
 import {PropertyCatalogType} from "@/types/types";
 import LoaderSpiner from "@/components/LoaderSpiner.vue";
 
+const props = defineProps({
+  url: {
+    type: String,
+    default: ''
+  },
+})
+
 const catalogStore = useCatalogStore();
 const curCityStore = useCurCityStore();
+const curTypeStore = useCurTypeStore();
+const curType = computed(() => curTypeStore.type);
+
 const curCity = computed(() => curCityStore.curCity);
 const currentPage = ref(1);
 const startIndex = ref(0);
 const itemsPerPage = 6;
 const endIndex = ref(itemsPerPage);
-const URL: string = 'https://dbd0282f034a13d8.mokky.dev/catalog';
+const URL: string = props.url;
 const data = ref([]);
 const loading = ref<boolean>(true);
 const error = ref<Error | null>(null);
@@ -63,20 +74,28 @@ watch(currentPage, () => {
   changePage(currentPage.value);
 })
 
-watch([curCity, locationType],
-    async () => {
+watch([curCity, locationType, curType], async () => {
+  // Запрос данных
+  await fetchData<FetchDataArgsCatalog[]>({ url: URL, loading, data, error });
 
-      if (locationType.value === '') {
-        await fetchData<FetchDataArgsCatalog[]>({url: URL, loading, data, error});
-        catalogStore.setCatalog(data.value.filter((item: PropertyCatalogType) => item.city === curCity.value));
-        changePage(1);
-      } else {
-        await fetchData<FetchDataArgsCatalog[]>({url: URL, loading, data, error});
-        catalogStore.setCatalog(data.value.filter((item: PropertyCatalogType) => item.city === curCity.value && item.location === locationType.value));
-        changePage(1);
-      }
-    }
-)
+  // Фильтрация данных по городу и типу локации
+  let filteredData = data.value.filter((item: PropertyCatalogType) => item.city === curCity.value);
+
+  if (locationType.value !== '') {
+    filteredData = filteredData.filter((item: PropertyCatalogType) => item.location === locationType.value);
+  }
+
+  // Добавление дополнительной фильтрации по типу объекта
+  if (curType.value !== 'all_objects') {
+    filteredData = filteredData.filter((item: PropertyCatalogType) => item.type === curType.value);
+  }
+
+  // Обновление хранилища
+  catalogStore.setCatalog(filteredData);
+
+  // Смена страницы
+  changePage(1);
+});
 
 
 </script>
@@ -93,7 +112,7 @@ watch([curCity, locationType],
             <br>
             {{ card.title }}</h3>
           <card-options style="margin-bottom: 0;" :bedroom="card.options.bedroom" :square="card.options.square"/>
-          <p class="row-value">
+          <p style="text-transform: capitalize" class="row-value">
             <span class="row-label">Район:</span> {{ card.district }}, {{ card.city }}
           </p>
           <p class="row-value">

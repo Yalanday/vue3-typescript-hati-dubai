@@ -10,6 +10,7 @@ import {fetchDataItemsAllSlide} from "@/api/api-home";
 import {getCurrentExValutes} from "@/api/api-valute";
 //types
 import type {TypeItemSlide} from "@/types/types";
+import LoaderSpiner from "@/components/LoaderSpiner.vue";
 
 const cityStore = useCurCityStore();
 const typeStore = useCurTypeStore();
@@ -67,6 +68,7 @@ watch(
 </script>
 
 <template>
+  <LoaderSpiner :loading="loading"/>
   <type-slider :items="itemsForSlider"/>
 </template>
 

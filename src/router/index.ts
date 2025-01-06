@@ -6,6 +6,9 @@ import CompanyPage from "@/pages/CompanyPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import NewsPage from "@/pages/NewsPage.vue";
 import CatalogSale from "@/pages/CatalogSale.vue";
+import CatalogArenda from "@/pages/CatalogArenda.vue";
+import NewHomes from "@/pages/NewHomes.vue";
+import Village from "@/pages/Village.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -32,6 +35,18 @@ const routes: Array<RouteRecordRaw> = [
         path: '/news',
         component: NewsPage
     },
+    {
+        path: '/rent',
+        component: CatalogArenda
+    },
+    {
+        path: '/new-home',
+        component: NewHomes
+    },
+    {
+        path: '/village',
+        component: Village
+    }
 
 
 ];

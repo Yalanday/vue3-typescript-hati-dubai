@@ -5,6 +5,7 @@ import TypeSliders from "@/components/TypeSliders.vue";
 </script>
 
 <template>
+
   <sale-promo/>
   <type-sliders/>
 </template>

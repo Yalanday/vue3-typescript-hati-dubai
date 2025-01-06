@@ -11,9 +11,9 @@ type HeaderNavItem = {
 const navItems: HeaderNavItem[] = [
   {label: 'Лучшие', link: '/best', active: false},
   {label: 'Продажа', link: '/sale', active: true},
-  {label: 'Аренда', link: '/blog', active: false},
-  {label: 'Новостройки', link: '/contact', active: false},
-  {label: 'Виллы', link: '/contact', active: false},
+  {label: 'Аренда', link: '/rent', active: false},
+  {label: 'Новостройки', link: '/new-home', active: false},
+  {label: 'Виллы', link: '/village', active: false},
   {label: 'Застройщики', link: '/company', active: false},
 ];
 

@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import type {SelectProps} from 'ant-design-vue';
-import RoundedContainer from "@/components/RoundedContainer.vue";
-import {propsCatalogFilter} from "@/props/style-collection";
+
+import {useCatalogStore} from "@/store/catalog-store";
+import {useCurTypeStore} from "@/store/cur-type-home";
+
+const catalogStore = useCatalogStore();
+const curTypeStore = useCurTypeStore();
 
 const value1 = ref('Все');
 const value2 = ref('Цена');
-const value3 = ref('Площадь');
 
 const options1 = ref<SelectProps['options']>([
   {
@@ -22,33 +25,18 @@ const options1 = ref<SelectProps['options']>([
     label: 'Аппартаменты',
   },
   {
-    value: 'town',
-    label: 'Таунхаусы',
-  },
-  {
     value: 'live',
     label: 'Жилые комплексы',
   }
 ]);
 const options2 = ref<SelectProps['options']>([
   {
-    value: 'expensive',
+    value: 'desc',
     label: 'Дорогие',
   },
   {
-    value: 'cheap',
+    value: 'asc',
     label: 'Дешевые',
-  }
-]);
-
-const options3 = ref<SelectProps['options']>([
-  {
-    value: 'little',
-    label: 'Меньше',
-  },
-  {
-    value: 'big',
-    label: 'Больше',
   }
 ]);
 
@@ -56,9 +44,14 @@ const focus = () => {
   console.log('focus');
 };
 
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
+const handleChangeType = (value: string) => {
+  curTypeStore.setType(value);
 };
+
+const handleChange = (value: "asc" | "desc") => {
+  catalogStore.setSortOrder(value);
+};
+
 </script>
 
 <template>
@@ -70,7 +63,7 @@ const handleChange = (value: string) => {
           class="select-1"
           :options="options1"
           @focus="focus"
-          @change="handleChange"
+          @change="handleChangeType"
           :bordered="false"
       ></a-select>
 
@@ -78,17 +71,10 @@ const handleChange = (value: string) => {
                 class="select-2"
                 :options="options2"
                 :bordered="false"
+                @change="handleChange"
       ></a-select>
 
-      <a-select v-model:value="value3"
-                class="select-3"
-                :options="options3"
-                :bordered="false"
-      ></a-select>
     </a-space>
-    <rounded-container style="height: 40px" v-bind="propsCatalogFilter">
-      <div class="catalog-filter__btn">Начать подбор</div>
-    </rounded-container>
   </div>
 </template>
 <style scoped lang="scss">
@@ -112,26 +98,6 @@ const handleChange = (value: string) => {
     width: 120px;
     color: #ffffff;
   }
-
-  .select-3 {
-    width: 120px;
-    color: #ffffff;
-  }
-
-  .catalog-filter__btn {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 50px;
-    cursor: pointer;
-    text-transform: uppercase;
-
-    &:hover {
-      color: #208B95;
-    }
-  }
 }
 
 @media (max-width: 1279px) {
@@ -139,13 +105,6 @@ const handleChange = (value: string) => {
     max-width: 700px;
     width: 100%;
 
-    .catalog-filter__btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
 
     .filter-wrap {
       padding-left: 20px;
@@ -157,10 +116,6 @@ const handleChange = (value: string) => {
 
     .select-2 {
       width: 100px;
-    }
-
-    .select-3 {
-      width: 120px;
     }
   }
 }
@@ -180,22 +135,12 @@ const handleChange = (value: string) => {
     }
 
     .select-1,
-    .select-2,
-    .select-3 {
+    .select-2 {
       width: 320px;
       background-color: #ffffff;
       margin-bottom: 10px;
       padding: 10px;
       border-radius: 50px;
-    }
-
-    .select-3 {
-      margin-bottom: 20px;
-    }
-
-    .catalog-filter__btn {
-      width: 320px;
-      margin-bottom: 20px;
     }
   }
 }

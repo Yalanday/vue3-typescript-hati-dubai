@@ -9,6 +9,7 @@ import {fetchDataItemsSlide} from "@/api/api-home";
 import {getCurrentExValutes} from "@/api/api-valute";
 //types
 import type {PromoItemSlide} from "@/types/types";
+import LoaderSpiner from "@/components/LoaderSpiner.vue";
 
 const cityStore = useCurCityStore();
 const itemSlides = ref([] as PromoItemSlide[])
@@ -34,6 +35,7 @@ watch(
 </script>
 
 <template>
+  <LoaderSpiner :loading="loading"/>
   <PromoSlider :items="itemSlides"/>
 </template>
 

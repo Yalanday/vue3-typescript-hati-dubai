@@ -2,12 +2,12 @@
 
 import CatalogUniversal from "@/components/CatalogUniversal.vue";
 
-const URL: string = 'https://dbd0282f034a13d8.mokky.dev/catalog?offer=sale';
+const URL: string = 'https://dbd0282f034a13d8.mokky.dev/catalog?type=live';
 
 </script>
 
 <template>
-  <catalog-universal title="Продажа" :url="URL"/>
+  <catalog-universal title="Новостройки" :url="URL"/>
 </template>
 
 <style scoped lang="scss">
