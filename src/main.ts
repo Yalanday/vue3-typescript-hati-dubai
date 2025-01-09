@@ -6,9 +6,10 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 import {createPinia} from "pinia";
 import VueSmoothScroll from 'vue3-smooth-scroll'
-
+// store
 import {useCurCityStore} from "@/store/cur-city";
 import {useCurValuteStore} from "@/store/cur-valute";
+//middlewares
 import {useMiddleware} from "@/store/middleware";
 
 const app = createApp(App);
