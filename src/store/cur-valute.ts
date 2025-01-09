@@ -10,7 +10,6 @@ export const useCurValuteStore = defineStore('curValute', {
     actions: {
         setCurValute(valute: string) {
             this._curValute = valute
-            console.log('текущая валюта ' + this._curValute)
         }
     }
 })

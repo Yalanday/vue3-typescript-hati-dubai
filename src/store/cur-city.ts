@@ -9,10 +9,12 @@ export const useCurCityStore = defineStore('curCity', {
     },
     actions: {
         setCurCity(city: string) {
-            this._curCity = city
+            this._curCity = city;
         }
     }
 })
+
+
 
 
 
